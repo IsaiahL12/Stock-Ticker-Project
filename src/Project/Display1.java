@@ -17,7 +17,8 @@ public class Display1 extends JFrame {
 	public static final int MINI_BORDER_Y= 500;
 	
 	public static void main (String[] args) {
-				frame = new Display1();
+		frame = new Display1();
+		frame.add(new SearchPage());
 		frame.setMinimumSize(new Dimension(MINI_BORDER_X, MINI_BORDER_Y));
 		frame.pack(); // scale thing down so that every thing fits on the frame
 		frame.setTitle("STOCK TICKER :)");

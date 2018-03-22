@@ -9,6 +9,9 @@ public class SearchPage extends JPanel {
 	private JLabel jlblTitle = new JLabel ("Restuarant Finder :)");
 	public  SearchPage(){
 	/*	
+	Hello Friends :-) 
+	
+	
 	JPanel p = new JPanel();
     p.setLayout(new BorderLayout());
     p.add(new Button("Okay"), BorderLayout.SOUTH);

@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 public class SearchPage extends JPanel {
 	
-	
+	private JLabel pageName = new JLabel ("Search Page");
 	
 	
 	public  SearchPage(){
@@ -34,7 +34,7 @@ public class SearchPage extends JPanel {
 		searchComponentsCombine.add( searchButton);
 		leftHalf.add(searchComponentsCombine, BorderLayout.NORTH);
 		// end of the code that makes the search bar
-		
+	
 		// beginning of the code that makes the result panel
 		JPanel resultPanel = new JPanel();
 		resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
@@ -50,22 +50,63 @@ public class SearchPage extends JPanel {
 			resultPanel.add(stockButton);
 		}
 		
-		
 		JScrollPane scrollPane = new JScrollPane(resultPanel);
-		scrollPane.setPreferredSize(new Dimension(100, 400));
+		scrollPane.setPreferredSize(new Dimension(100, 370));
 		
 		leftHalf.add(scrollPane, BorderLayout.CENTER);
 		// end of the code that makes the result panel
 		
+		// beginning of the code that makes the next/Prev buttons 
+		JPanel bottom = new JPanel();
+		bottom.setLayout(new FlowLayout());
 		JButton previousButton = new JButton("Previous");
 		JButton nextButton = new JButton("Next");
-		
-		// End of that makes the left 
-		
-		//this add the halves together
+		bottom.add(previousButton);
+		bottom.add(nextButton);
+		leftHalf.add(bottom, BorderLayout.SOUTH);
+		// End of that makes the next/Prev buttons 
 		splitInHalves.add(leftHalf);
-		splitInHalves.add(new JLabel("Right half "));
+		// End of that makes the left
+		
+		//Begin of code that makes the right side/ half
+		
+		JPanel rightside = new JPanel();
+	    rightside.setLayout(new BorderLayout());
+	  
+	    //Begin of code that makes the data Panel
+	    JPanel datePanel = new JPanel();
+		JButton dayButton = new JButton("Day");
+		JButton weekButton = new JButton("Week");
+		JButton monthButton = new JButton("Month");
+		JButton yearButton = new JButton("Year");
+	
+		
+	    datePanel.add(dayButton);
+	    datePanel.add(weekButton);
+	    datePanel.add(monthButton);
+	    datePanel.add(yearButton);
+	    
+	    rightside.add(datePanel, BorderLayout.NORTH);
+	    // End of that makes the data Panel
+	    
+	    //Begin of code that makes the Graphs
+	    rightside.add(new JLabel ("Insert graph"), BorderLayout.CENTER);
+	    // End of that makes the data Panel
+	    
+	    //Begin of code that makes the Graphs of buy sell buttons
+	    rightside.add(new JLabel ("I forget what goes here."), BorderLayout.SOUTH);
+	    // End of that makes the data Panel
+	    
+	    
+	    splitInHalves.add(rightside);
+	    // End of that makes the Right side/ half
+
+		//this add the halves together
+	    this.add(pageName, BorderLayout.NORTH);
 		this.add(splitInHalves , BorderLayout.CENTER);
+		
+		
+
 		
 		
 		
@@ -76,7 +117,20 @@ public class SearchPage extends JPanel {
 			}
 		});
 		
-
+		previousButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		nextButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
 	 }
 	}
 

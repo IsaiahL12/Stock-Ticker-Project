@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class Display1 extends JFrame {
 	public static JFrame frame;
-	public static final int MINI_BORDER_X= 500;
+	public static final int MINI_BORDER_X= 700;
 	public static final int MINI_BORDER_Y= 500;
 	
 	public static void main (String[] args) {

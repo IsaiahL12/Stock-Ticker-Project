@@ -131,6 +131,35 @@ public class SearchPage extends JPanel {
 			}
 		});
 		
+		dayButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});	
+		
+		weekButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		monthButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});	
+		
+		yearButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});	
+
+		
 	 }
 	}
 

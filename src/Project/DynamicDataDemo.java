@@ -54,7 +54,7 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
         content.add(chartPanel);
         content.add(button, BorderLayout.SOUTH);
         chartPanel.setPreferredSize(new java.awt.Dimension(375, 270));
-        //setContentPane(content);
+        //setContentPane(content)
         this.add(content);
   
 

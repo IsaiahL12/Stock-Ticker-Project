@@ -90,11 +90,24 @@ public class SearchPage extends JPanel {
 	    // End of that makes the data Panel
 	    
 	    //Begin of code that makes the Graphs
-	    rightside.add(new JLabel ("Insert graph"), BorderLayout.CENTER);
+	    JPanel graph = new JPanel();
+	    DynamicDataDemo demo = new DynamicDataDemo("Dynamic Data Demo");
+        //demo.pack();
+        demo.setVisible(true);
+        graph.add(demo);
+        rightside.add(demo, BorderLayout.CENTER);
+	    //rightside.add(new JLabel ("Insert graph"), BorderLayout.CENTER);
 	    // End of that makes the data Panel
 	    
 	    //Begin of code that makes the Graphs of buy sell buttons
-	    rightside.add(new JLabel ("I forget what goes here."), BorderLayout.SOUTH);
+	    JPanel dealPanel = new JPanel();
+	    JButton sellButton = new JButton("sell");
+	    JButton buyButton = new JButton("Buy");
+	    
+	    dealPanel.add(sellButton);
+	    dealPanel.add(buyButton);
+	    
+	    rightside.add(dealPanel, BorderLayout.SOUTH);
 	    // End of that makes the data Panel
 	    
 	    
@@ -153,6 +166,20 @@ public class SearchPage extends JPanel {
 		});	
 		
 		yearButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});	
+		
+		sellButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});	
+		
+		buyButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
 				

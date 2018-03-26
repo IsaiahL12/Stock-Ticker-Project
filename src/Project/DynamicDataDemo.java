@@ -1,4 +1,4 @@
-package softwareEng1;
+package Project;
 
 
 
@@ -24,7 +24,7 @@ import org.jfree.ui.RefineryUtilities;
 import demo.DynamicDataDemo1;
 
 @SuppressWarnings("serial")
-public class DynamicDataDemo extends ApplicationFrame implements ActionListener {
+public class DynamicDataDemo extends JPanel implements ActionListener {
 
     /** The time series data. */
     private TimeSeries series;
@@ -38,23 +38,25 @@ public class DynamicDataDemo extends ApplicationFrame implements ActionListener 
      * @param title  the frame title.
      */
     @SuppressWarnings("deprecation")
-	public DynamicDataDemo(final String title) {
+	public DynamicDataDemo( String title) {
 
-        super(title);
         this.series = new TimeSeries("Random Data", Millisecond.class);
-        final TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
-        final JFreeChart chart = createChart(dataset);
+         TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
+         JFreeChart chart = createChart(dataset);
 
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        final JButton button = new JButton("Add New Data Item");
+         ChartPanel chartPanel = new ChartPanel(chart);
+        
+         JButton button = new JButton("Add New Data Item");
         button.setActionCommand("ADD_DATA");
         button.addActionListener(this);
-
-        final JPanel content = new JPanel(new BorderLayout());
+        
+         JPanel content = new JPanel(new BorderLayout());
         content.add(chartPanel);
         content.add(button, BorderLayout.SOUTH);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(content);
+        chartPanel.setPreferredSize(new java.awt.Dimension(375, 270));
+        //setContentPane(content);
+        this.add(content);
+  
 
     }
 
@@ -100,14 +102,6 @@ public class DynamicDataDemo extends ApplicationFrame implements ActionListener 
      *
      * @param args  ignored.
      */
-    public static void main(final String[] args) {
-
-        final DynamicDataDemo demo = new DynamicDataDemo("Dynamic Data Demo");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
-
-    }
 
 }
 

@@ -18,10 +18,10 @@ import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
+//import org.jfree.ui.ApplicationFrame;
+//import org.jfree.ui.RefineryUtilities;
 
-import demo.DynamicDataDemo1;
+//import demo.DynamicDataDemo1;
 
 @SuppressWarnings("serial")
 public class DynamicDataDemo extends JPanel implements ActionListener {
@@ -53,7 +53,7 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
          JPanel content = new JPanel(new BorderLayout());
         content.add(chartPanel);
         content.add(button, BorderLayout.SOUTH);
-        chartPanel.setPreferredSize(new java.awt.Dimension(375, 270));
+        chartPanel.setPreferredSize(new java.awt.Dimension(375, 320));
         //setContentPane(content)
         this.add(content);
   

@@ -115,8 +115,14 @@ public class SearchPage extends JPanel {
 	    // End of that makes the Right side/ half
 
 		//this add the halves together
-	    this.add(pageName, BorderLayout.NORTH);
-		this.add(splitInHalves , BorderLayout.CENTER);
+	    JPanel completeTheJPanel = new JPanel();
+	    completeTheJPanel.setLayout(new BorderLayout());
+	    JPanel title = new JPanel();
+	    title.setLayout(new FlowLayout());
+	    title.add(pageName);
+	    completeTheJPanel.add(title, BorderLayout.NORTH);
+	    completeTheJPanel.add(splitInHalves , BorderLayout.CENTER);
+		this.add(completeTheJPanel, BorderLayout.CENTER);
 		
 		
 

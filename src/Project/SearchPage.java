@@ -27,6 +27,8 @@ public class SearchPage extends JPanel {
 		JLabel searchBoxLabel = new JLabel ("Stock Search");
 		JButton searchButton = new JButton("Search");
 
+		
+		//Search Bar JPanel 
 		JPanel searchComponentsCombine = new JPanel();
 		searchComponentsCombine.setLayout(new FlowLayout());
 		searchComponentsCombine.add( searchBoxLabel);
@@ -127,7 +129,7 @@ public class SearchPage extends JPanel {
 		
 
 		
-		
+		//Action Listeners for Buttons
 		
 		searchButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
@@ -197,5 +199,3 @@ public class SearchPage extends JPanel {
 	 }
 	}
 
-// Split panel into borders, east and west
-//split each border into three sections 

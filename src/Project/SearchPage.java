@@ -6,7 +6,10 @@ import java.io.*;
 import java.awt.event.*;
 
 
+@SuppressWarnings("serial")
 public class SearchPage extends JPanel {
+	
+	
 	
 	private JLabel pageName = new JLabel ("Search Page");
 	
@@ -43,6 +46,12 @@ public class SearchPage extends JPanel {
 		for (int i = 0; i < 25; i++) {	
 			JButton stockButton= new JButton("Stock - " + i) {
 				{
+					/*
+					Dimension d = new Dimension(367, 75);
+		            setMinimumSize(d);
+		            setMaximumSize(d);
+		            setPreferredSize(d);
+		            */
 				 setSize(400, 200);
 		         setMaximumSize(getSize());
 				}

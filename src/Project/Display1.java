@@ -11,6 +11,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
+@SuppressWarnings("serial")
 public class Display1 extends JFrame {
 	public static JFrame frame;
 	

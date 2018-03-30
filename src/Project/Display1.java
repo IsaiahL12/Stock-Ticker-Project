@@ -28,7 +28,7 @@ public class Display1 extends JFrame {
 		frame.setMaximumSize(new Dimension(MAX_BORDER_X, MAX_BORDER_Y));
 		//frame.pack(); // scale thing down so that every thing fits on the frame
 		frame.setSize(MAX_BORDER_X, MAX_BORDER_Y);
-		frame.setTitle("STOCK TICKER :)");
+		frame.setTitle("STOCK TICKER");
 		frame.setLocationRelativeTo(null);  //Center the frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);	

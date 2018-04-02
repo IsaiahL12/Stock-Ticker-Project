@@ -2,9 +2,8 @@ package Project;
 
 import java.net.*;
 import java.nio.charset.Charset;
-
-//import com.orsoncharts.util.json.JSONObject;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.io.*;
 
 
@@ -12,7 +11,7 @@ public class Quandl {
 	
 	public static final String apiKey = "data.json?api_key=yAvseaTaJZSnmLkt35Rf";
 	public static final String quandlWebisite = "https://www.quandl.com/api/v3/datasets/";
-	public Quandl() {
+	public Quandl() throws IOException, JSONException  {
 		
 	}
 	
@@ -37,12 +36,13 @@ public class Quandl {
 	    }
 	  }
 	
-	public static void main(String [] args) throws IOException {
+	public static void main(String [] args) throws IOException, JSONException {
 		 String test = "https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=yAvseaTaJZSnmLkt35Rf";
-		 String json = readJsonFromUrl("https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=yAvseaTaJZSnmLkt35Rf");
+		 String getData = readJsonFromUrl("https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=yAvseaTaJZSnmLkt35Rf");
+		 
+		 JSONObject json = new JSONObject(getData);
 		 System.out.println(json);
-		 System.out.println("end");
-	}
+			}
 
 }
 

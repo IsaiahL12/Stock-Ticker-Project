@@ -6,16 +6,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.*;
 
-
-public class Quandl {
+public class IEX {
 	
-	public static final String apiKey = "data.json?api_key=yAvseaTaJZSnmLkt35Rf";
-	public static final String quandlWebisite = "https://www.quandl.com/api/v3/datasets/";
-	public Quandl() throws IOException, JSONException  {
+	//IEX does not need a API key 
+	public static final String IEXWebisite = "https://ws-api.iextrading.com/1.0/";
+	
+	public IEX() throws IOException, JSONException  {
 		
 	}
-	
-	  private static String readAll(Reader rd) throws IOException {
+
+	 private static String readAll(Reader rd) throws IOException {
 		    StringBuilder sb = new StringBuilder();
 		    int cp;
 		    while ((cp = rd.read()) != -1) {
@@ -37,12 +37,10 @@ public class Quandl {
 	  }
 	
 	public static void main(String [] args) throws IOException, JSONException {
-		 String test = "https://www.quandl.com/api/v3/datasets/WIKI/FB/data.json?api_key=yAvseaTaJZSnmLkt35Rf";
+		 String test = "https://api.iextrading.com/1.0/stock/aapl/batch?types=quote,news,chart&range=1m&last=10";
 		 String getData = readJsonFromUrl(test);
 		 
 		 JSONObject json = new JSONObject(getData);
 		 System.out.println(json);
 			}
-
 }
-

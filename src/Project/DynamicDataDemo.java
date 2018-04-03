@@ -1,7 +1,9 @@
 package Project;
 
-
-
+/*
+ * need to add download the Reference library for the project 
+ * Jfreechart download page: https://sourceforge.net/projects/jfreechart/files/
+*/
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

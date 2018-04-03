@@ -16,7 +16,7 @@ public class SearchPage extends JPanel {
 	
 	public  SearchPage(){
 		
-		//spilt the screen into Project.SearchPage.SearchPage().splitInHalves
+		//split the screen into Project.SearchPage.SearchPage().splitInHalves
 		JPanel splitInHalves = new JPanel();              
 		splitInHalves.setLayout(new GridLayout(1, 2));
 		
@@ -34,9 +34,9 @@ public class SearchPage extends JPanel {
 		//Search Bar JPanel 
 		JPanel searchComponentsCombine = new JPanel();
 		searchComponentsCombine.setLayout(new FlowLayout());
-		searchComponentsCombine.add( searchBoxLabel);
-		searchComponentsCombine.add( searchBox);
-		searchComponentsCombine.add( searchButton);
+		searchComponentsCombine.add(searchBoxLabel);
+		searchComponentsCombine.add(searchBox);
+		searchComponentsCombine.add(searchButton);
 		leftHalf.add(searchComponentsCombine, BorderLayout.NORTH);
 		// end of the code that makes the search bar
 	
@@ -112,7 +112,7 @@ public class SearchPage extends JPanel {
 	    
 	    //Begin of code that makes the Graphs of buy sell buttons
 	    JPanel dealPanel = new JPanel();
-	    JButton sellButton = new JButton("sell");
+	    JButton sellButton = new JButton("Sell");
 	    JButton buyButton = new JButton("Buy");
 	    
 	    dealPanel.add(sellButton);

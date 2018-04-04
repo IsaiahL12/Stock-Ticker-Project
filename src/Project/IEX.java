@@ -68,7 +68,7 @@ public class IEX {
 	}
 	
 	public static void main(String [] args) throws IOException, JSONException {
-		IEX a= new IEX();
-		System.out.println(a.searchForByNames("AG"));
+		/*IEX a= new IEX();
+		System.out.println(a.searchForByNames("AG"));*/
 			}
 }

@@ -12,14 +12,15 @@ public class IEX {
 	
 	//IEX does not need a API key 
 	public static final String IEXWebisite = "https://ws-api.iextrading.com/1.0/";
+	public static final String refData = "https://api.iextrading.com/1.0/ref-data/symbols";
 	public  static Vector<String>  hold = new Vector<String>();
+	public  static Vector<String>  parse = new Vector<String>();
+	public  static Vector<String>  savedResult = new Vector<String>();
 	public IEX() throws IOException, JSONException  {
 		
 	}
 	
-	public String searchForByNames() {
-		return null;
-	}
+	
 
 	 private static  Vector<String>  readAll(Reader rd) throws IOException {
 		    StringBuilder sb = new StringBuilder();
@@ -47,13 +48,18 @@ public class IEX {
 	  }
 	
 	public static void main(String [] args) throws IOException, JSONException {
-		 String test = "https://api.iextrading.com/1.0/ref-data/symbols";
-		 Vector<String> getData = readJsonFromUrl(test);
-		 String a = "\"name\":\"";
+		 Vector<String> getData = readJsonFromUrl(refData);
+		 String a = "\"name\":\"A";
 		 //JSONObject json = new JSONObject(getData);
 		 for (int i = 0; i < getData.size(); i++) {
-			 //if(seq) {}
-		 System.out.println(getData.get(0));
+			 if(getData.get(i).contains(a.toLowerCase())) {
+		 System.out.println(getData.get(i));
+			 }
 		 }
 			}
+	
+	public String searchForByNames() {
+		return null;
+	}
+	
 }

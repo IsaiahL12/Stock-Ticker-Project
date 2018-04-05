@@ -181,7 +181,7 @@ public class SearchPage extends JPanel {
 		nextButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				//0
 			}
 		});
 		

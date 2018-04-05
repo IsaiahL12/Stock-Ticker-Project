@@ -16,71 +16,97 @@ public class LandingPage extends JPanel {
 	public LandingPage(){
 		
 		JPanel firstlayer = new JPanel();
-		firstlayer.setLayout(new BorderLayout());
-		
+		firstlayer.setLayout(new GridLayout (5,1,0, 30));
+		firstlayer.add(pageName);
 		//Note alterPassword is the JPanel where the new and old passwords are typed in.
 		// changePassword is the JPanel with the button to trigger the panel swap.
 		//Do not confuse the two.
 		
-		JPanel alterPassword = new JPanel();
+		final JPanel alterPassword = new JPanel();
+		alterPassword.setLayout(new BorderLayout(10,10));
 		
 		JPanel oldPassword = new JPanel();
 		
-		JTextField oldPasswordBox = new JTextField();
-		oldPasswordBox.setColumns(16);
+		JPasswordField oldPasswordField = new JPasswordField();
+		oldPasswordField.setColumns(16);
 		JLabel oldPasswordLabel = new JLabel("Enter Old Password");
 		
 		oldPassword.add(oldPasswordLabel);
-		oldPassword.add(oldPasswordBox);
+		oldPassword.add(oldPasswordField);
 		
 		JPanel newPassword = new JPanel();
 		
-		JTextField newPasswordBox = new JTextField();
-		newPasswordBox.setColumns(16);
+		JPasswordField newPasswordField = new JPasswordField();
+		newPasswordField.setColumns(16);
 		JLabel newPasswordLabel = new JLabel("Enter New Password");
 		JButton newPasswordButton = new JButton("Confirm");
 		
 		newPassword.add(newPasswordLabel);
-		newPassword.add(newPasswordBox);
+		newPassword.add(newPasswordField);
 		newPassword.add(newPasswordButton);
 		
 		alterPassword.add(oldPassword, BorderLayout.NORTH);
 		alterPassword.add(newPassword, BorderLayout.SOUTH);
 		
-		JPanel loginPassword = new JPanel();
+		final JPanel loginPassword = new JPanel();
 		
 		JLabel loginPasswordLabel = new JLabel("Enter Password");
-		JTextField loginPasswordBox = new JTextField();
-		loginPasswordBox.setColumns(16);
+		JPasswordField loginPasswordField = new JPasswordField();
+		loginPasswordField.setColumns(16);
 		JButton loginPasswordButton = new JButton("Confirm");
 		
 		loginPassword.add(loginPasswordLabel);
-		loginPassword.add(loginPasswordBox);
+		loginPassword.add(loginPasswordField);
+		loginPassword.add(loginPasswordButton);
 		
-		JPanel changePassword = new JPanel();
+		final JPanel changePassword = new JPanel();
 		
 		JButton changePasswordButton = new JButton ("Change Password");
+		changePassword.add(changePasswordButton);
+
+		final JPanel cancelchangePassword = new JPanel();
+
+		JButton cancelchangePasswordButton = new JButton ("Cancel");
+		cancelchangePassword.add(cancelchangePasswordButton);
+
 		
-	
-	
+		firstlayer.add(loginPassword);
+		firstlayer.add(alterPassword);
+		firstlayer.add(changePassword);
+		firstlayer.add(cancelchangePassword);
+
+		alterPassword.setVisible(false);
+		cancelchangePassword.setVisible(false);
+		this.add(firstlayer);
+
+		
 		changePasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				alterPassword.setVisible(true);
+				loginPassword.setVisible(false);
+				changePassword.setVisible(false);
+				cancelchangePassword.setVisible(true);
 				
-				
+			}
+		});	
+		
+		cancelchangePasswordButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+				alterPassword.setVisible(false);
+				loginPassword.setVisible(true);	
+				changePassword.setVisible(true);
+				cancelchangePassword.setVisible(false);
 			}
 		});	
 		
 		loginPasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
-				
+						
 			}
 		});	
 		
 		newPasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
-				
 			}
 		});	
 	}

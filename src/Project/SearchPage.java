@@ -12,7 +12,7 @@ public class SearchPage extends JPanel {
 	
 	
 	private JLabel pageName = new JLabel ("Search Page");
-	
+	public JTextField searchBox = new JTextField();
 	
 	public  SearchPage(){
 		
@@ -25,7 +25,7 @@ public class SearchPage extends JPanel {
 		leftHalf.setLayout(new BorderLayout());
 		
 		// beginning of the code that makes the search bar
-		JTextField searchBox = new JTextField();
+		//JTextField searchBox = new JTextField();
 		searchBox.setColumns(16);
 		JLabel searchBoxLabel = new JLabel ("Stock Search");
 		JButton searchButton = new JButton("Search");
@@ -48,14 +48,15 @@ public class SearchPage extends JPanel {
 		for (int i = 0; i < 25; i++) {	
 			JButton stockButton= new JButton("Stock - " + i) {
 				{
-					/*
+					
 					Dimension d = new Dimension(367, 75);
 		            setMinimumSize(d);
 		            setMaximumSize(d);
 		            setPreferredSize(d);
-		            */
+		         /*  
 				 setSize(400, 200);
 		         setMaximumSize(getSize());
+		          */
 				}
 			};
 			resultPanel.add(stockButton);
@@ -142,8 +143,15 @@ public class SearchPage extends JPanel {
 		
 		searchButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
-				
+			searchBox.getText();
+			IEX a = new IEX(); 
+			try {
+				//a.searchForByNames(searchBox.getText());
+				System.out.println(a.searchForByNames(searchBox.getText()));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			}
 		});
 		

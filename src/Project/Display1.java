@@ -17,7 +17,6 @@ public class Display1 extends JFrame {
 	
 	public static final int MINI_BORDER_X= 300;
 	public static final int MINI_BORDER_Y= 300;
-	
 	public static final int MAX_BORDER_X = 800;
 	public static final int MAX_BORDER_Y = 550;
 	

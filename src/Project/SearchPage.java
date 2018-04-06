@@ -13,9 +13,6 @@ public class SearchPage extends JPanel {
 	
 	private JLabel pageName = new JLabel ("Search Page");
 	public JTextField searchBox = new JTextField();
-	public JPanel leftHalf = new JPanel();
-	public JPanel rightside = new JPanel();
-	JPanel resultPanel = new JPanel();
 	
 	public  SearchPage(){
 		
@@ -24,7 +21,7 @@ public class SearchPage extends JPanel {
 		splitInHalves.setLayout(new GridLayout(1, 2));
 		
 		// beginning of the code that makes left half the panel
-		leftHalf = new JPanel();
+		JPanel leftHalf = new JPanel();
 		leftHalf.setLayout(new BorderLayout());
 		
 		// beginning of the code that makes the search bar
@@ -44,14 +41,31 @@ public class SearchPage extends JPanel {
 		// end of the code that makes the search bar
 	
 		// beginning of the code that makes the result panel
-		//JPanel resultPanel = new JPanel();
-		JPanel options = new JPanel();
-		options.add(new JLabel("<html> Here is where the result of the search bar will be. <br/> Search for a stock!</html>"));
+		JPanel resultPanel = new JPanel();
+		resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane = new JScrollPane(options);
-		scrollPane.setPreferredSize(new Dimension(385, 370));
-		resultPanel.add(scrollPane);
-		leftHalf.add(resultPanel, BorderLayout.CENTER);
+		
+		for (int i = 0; i < 25; i++) {	
+			JButton stockButton= new JButton("Stock - " + i) {
+				{
+					
+					Dimension d = new Dimension(367, 75);
+		            setMinimumSize(d);
+		            setMaximumSize(d);
+		            setPreferredSize(d);
+		         /*  
+				 setSize(400, 200);
+		         setMaximumSize(getSize());
+		          */
+				}
+			};
+			resultPanel.add(stockButton);
+		}
+		
+		JScrollPane scrollPane = new JScrollPane(resultPanel);
+		scrollPane.setPreferredSize(new Dimension(100, 370));
+		
+		leftHalf.add(scrollPane, BorderLayout.CENTER);
 		// end of the code that makes the result panel
 		
 		// beginning of the code that makes the next/Prev buttons 
@@ -68,7 +82,7 @@ public class SearchPage extends JPanel {
 		
 		//Begin of code that makes the right side/ half
 		
-		rightside = new JPanel();
+		JPanel rightside = new JPanel();
 	    rightside.setLayout(new BorderLayout());
 	  
 	    //Begin of code that makes the data Panel
@@ -129,41 +143,11 @@ public class SearchPage extends JPanel {
 		
 		searchButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+			searchBox.getText();
 			IEX a = new IEX(); 
 			try {
-				resultPanel.removeAll();
-				
 				//a.searchForByNames(searchBox.getText());
-				Vector<String> results = new Vector<String>(); 
-				results= a.searchForByNames(searchBox.getText());
-				JPanel options = new JPanel();
-				//options.removeAll();
-				options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
-				
-				
-				for (int i = 0; i < results.size(); i++) {	
-					JButton stockButton= new JButton(results.get(i)) {
-						{
-							
-							Dimension d = new Dimension(367, 75);
-				            setMinimumSize(d);
-				            setMaximumSize(d);
-				            setPreferredSize(d);
-				         /*  
-						 setSize(400, 200);
-				         setMaximumSize(getSize());
-				          */
-						}
-					};
-					options.add(stockButton);
-				}
-				
-				JScrollPane scrollPane = new JScrollPane(options);
-				scrollPane.setPreferredSize(new Dimension(385, 385));
-				resultPanel.add(scrollPane);
-				resultPanel.invalidate();
-				resultPanel.validate();
-				resultPanel.repaint();
+				System.out.println(a.searchForByNames(searchBox.getText()));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -181,7 +165,7 @@ public class SearchPage extends JPanel {
 		nextButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
-				//yo
+				
 			}
 		});
 		

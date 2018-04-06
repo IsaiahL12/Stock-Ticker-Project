@@ -50,7 +50,6 @@ public class IEX {
 	  }
 	
 	public Vector<String> searchForByNames(String jtextfeild) throws IOException {
-		savedResult = new Vector<String>();
 		Vector<String> getData = readUrlToVector(refData);
 		 String search = "\"name\":\"";
 		 search = search + jtextfeild;
@@ -65,14 +64,11 @@ public class IEX {
 			 savedResult.add(parsingString[1]);
 		 }
 		 
-		 find = new Vector<String>();
-		 parse = new Vector<String>();
 		return savedResult;
 	}
-	/*
+	
 	public static void main(String [] args) throws IOException, JSONException {
 		/*IEX a= new IEX();
-		System.out.println(a.searchForByNames("AG"));
+		System.out.println(a.searchForByNames("AG"));*/
 			}
-	*/
 }

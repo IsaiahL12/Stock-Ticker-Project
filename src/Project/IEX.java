@@ -16,7 +16,7 @@ public class IEX {
 	public  static Vector<String>  find = new Vector<String>();
 	public  static Vector<String>  parse = new Vector<String>();
 	public  static Vector<String>  savedResult = new Vector<String>();
-	
+	public int choose = 1;
 	
 	public IEX(){
 		
@@ -69,10 +69,44 @@ public class IEX {
 		 parse = new Vector<String>();
 		return savedResult;
 	}
+	
+	public Vector<String> searchForBySym(String jtextfeild) throws IOException {
+		savedResult = new Vector<String>();
+		Vector<String> getData = readUrlToVector(refData);
+		 String search = "\"symbol\":\"";
+		 search = search + jtextfeild;
+		 for (int i = 0; i < getData.size(); i++) {
+			 if(getData.get(i).toLowerCase().contains(search.toLowerCase())) {
+				 parse.add(getData.get(i));
+			 }
+		 }
+		 for (int i = 0; i < parse.size(); i++) {
+			 String[] parsingString =parse.get(i).split(":");
+			 parsingString = parsingString[1].split("\"");
+			 savedResult.add(parsingString[1]);
+		 }
+		 
+		 find = new Vector<String>();
+		 parse = new Vector<String>();
+		return savedResult;
+	}
+	
+	public Vector<String> chooseOne (String jtextfeild) throws IOException{
+		
+		if(choose == 1) {
+			return searchForByNames(jtextfeild);
+		}
+		else {
+			return searchForBySym( jtextfeild);
+			}
+		
+		
+	}
+	
 	/*
 	public static void main(String [] args) throws IOException, JSONException {
-		/*IEX a= new IEX();
-		System.out.println(a.searchForByNames("AG"));
+		IEX a= new IEX();
+		System.out.println(a.searchForByNames("Zi"));
 			}
 	*/
 }

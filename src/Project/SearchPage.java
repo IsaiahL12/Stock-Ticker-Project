@@ -10,14 +10,58 @@ import java.awt.event.*;
 public class SearchPage extends JPanel {
 	
 	
-	
 	private JLabel pageName = new JLabel ("Search Page");
 	public JTextField searchBox = new JTextField();
 	public JPanel leftHalf = new JPanel();
 	public JPanel rightside = new JPanel();
-	JPanel resultPanel = new JPanel();
+	public JPanel resultPanel = new JPanel();
+	public IEX getData = new IEX();
+	public JButton symbolButton;
+	public JButton nameButton;
 	
-	public  SearchPage(){
+	public void searching() {
+		try {
+			resultPanel.removeAll();
+			//a.searchForByNames(searchBox.getText());
+			Vector<String> results = new Vector<String>(); 
+			results= getData.chooseOne(searchBox.getText());
+			JPanel options = new JPanel();
+			//options.removeAll();
+			options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
+			
+			
+			for (int i = 0; i < results.size(); i++) {	
+				JButton stockButton= new JButton(results.get(i)) {
+					{
+						
+						Dimension d = new Dimension(367, 75);
+			            setMinimumSize(d);
+			            setMaximumSize(d);
+			            setPreferredSize(d);
+			         /*  
+					 setSize(400, 200);
+			         setMaximumSize(getSize());
+			          */
+					}
+				};
+				options.add(stockButton);
+			}
+			
+			JScrollPane scrollPane = new JScrollPane(options);
+			scrollPane.setPreferredSize(new Dimension(385, 385));
+			resultPanel.add(scrollPane);
+			resultPanel.invalidate();
+			resultPanel.validate();
+			resultPanel.repaint();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+	}
+	
+	public SearchPage(){
 		
 		//split the screen into Project.SearchPage.SearchPage().splitInHalves
 		JPanel splitInHalves = new JPanel();              
@@ -54,15 +98,16 @@ public class SearchPage extends JPanel {
 		leftHalf.add(resultPanel, BorderLayout.CENTER);
 		// end of the code that makes the result panel
 		
-		// beginning of the code that makes the next/Prev buttons 
+		// beginning of the code that makes the Name/Symbol buttons 
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new FlowLayout());
-		JButton previousButton = new JButton("Previous");
-		JButton nextButton = new JButton("Next");
-		bottom.add(previousButton);
-		bottom.add(nextButton);
+		symbolButton = new JButton("Symbol");
+		nameButton = new JButton("Name");
+		bottom.add(symbolButton);
+		bottom.add(nameButton);
+		nameButton.setEnabled(false);
 		leftHalf.add(bottom, BorderLayout.SOUTH);
-		// End of that makes the next/Prev buttons 
+		// End of that makes the Name/Symbol buttons 
 		splitInHalves.add(leftHalf);
 		// End of that makes the left
 		
@@ -129,59 +174,29 @@ public class SearchPage extends JPanel {
 		
 		searchButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-			IEX a = new IEX(); 
-			try {
-				resultPanel.removeAll();
-				
-				//a.searchForByNames(searchBox.getText());
-				Vector<String> results = new Vector<String>(); 
-				results= a.searchForByNames(searchBox.getText());
-				JPanel options = new JPanel();
-				//options.removeAll();
-				options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
-				
-				
-				for (int i = 0; i < results.size(); i++) {	
-					JButton stockButton= new JButton(results.get(i)) {
-						{
-							
-							Dimension d = new Dimension(367, 75);
-				            setMinimumSize(d);
-				            setMaximumSize(d);
-				            setPreferredSize(d);
-				         /*  
-						 setSize(400, 200);
-				         setMaximumSize(getSize());
-				          */
-						}
-					};
-					options.add(stockButton);
-				}
-				
-				JScrollPane scrollPane = new JScrollPane(options);
-				scrollPane.setPreferredSize(new Dimension(385, 385));
-				resultPanel.add(scrollPane);
-				resultPanel.invalidate();
-				resultPanel.validate();
-				resultPanel.repaint();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			//IEX a = new IEX(); 
+			searching();
 			}
 		});
 		
-		previousButton.addActionListener(new ActionListener(){	
+		symbolButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				getData.choose = 0;
+				symbolButton.setEnabled(false);
+				nameButton.setEnabled(true);
+				searching();
+				
 				
 				
 			}
 		});
 		
-		nextButton.addActionListener(new ActionListener(){	
+		nameButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
-				//yo
+				getData.choose = 1;
+				symbolButton.setEnabled(true);
+				nameButton.setEnabled(false);
+				searching();
 			}
 		});
 		

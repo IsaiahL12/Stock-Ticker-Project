@@ -18,6 +18,7 @@ public class SearchPage extends JPanel {
 	public IEX getData = new IEX();
 	public JButton symbolButton;
 	public JButton nameButton;
+	public String nameOfData;
 	
 	public void searching() {
 		try {
@@ -44,6 +45,7 @@ public class SearchPage extends JPanel {
 			          */
 					}
 				};
+				stockButton.addActionListener(new Listener());
 				options.add(stockButton);
 			}
 			
@@ -200,6 +202,7 @@ public class SearchPage extends JPanel {
 			}
 		});
 		
+		
 		dayButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
@@ -245,4 +248,16 @@ public class SearchPage extends JPanel {
 		
 		
 	 }
+	public class Listener implements ActionListener
+    {
+	public void actionPerformed(ActionEvent e) {
+		String text= e.getSource().toString();
+		String[] hold= text.split("text=");
+		hold=hold[1].split(",");
+		//System.out.println(hold[0]);
+		nameOfData= hold[0];
+		System.out.println(nameOfData);
+		
+	}
+    }
 	}

@@ -12,6 +12,7 @@ import java.awt.event.*;
 public class LandingPage extends JPanel {
 	
 	private JLabel pageName = new JLabel("Landing Page");
+	public PasswordBank password = new PasswordBank();
 	
 	public LandingPage(){
 		

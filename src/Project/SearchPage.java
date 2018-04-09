@@ -4,6 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.awt.event.*;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 @SuppressWarnings("serial")
@@ -251,7 +254,7 @@ public class SearchPage extends JPanel {
 	public class Listener implements ActionListener
     {
 	public void actionPerformed(ActionEvent e) {
-		IEX dataOfStock = new IEX();
+		IEX getDataOfStock = new IEX();
 		String text= e.getSource().toString();
 		String[] hold= text.split("text=");
 		hold=hold[1].split(",");
@@ -260,7 +263,7 @@ public class SearchPage extends JPanel {
 		
 		if (getData.choose == 1) {
 			try {
-				nameOfData = dataOfStock.usingNameToFindSymbol(nameOfData);
+				nameOfData = getDataOfStock.usingNameToFindSymbol(nameOfData);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -268,11 +271,20 @@ public class SearchPage extends JPanel {
 			}
 		System.out.println(nameOfData);
 		try {
-			System.out.println(dataOfStock.jsonOfData(nameOfData));
+			String stockData = new String();
+			stockData = getDataOfStock.jsonOfData(nameOfData);
+			System.out.println(stockData);
+			/*Object obj = new JSONParser().parse(new FileReader(stockData));
+			JSONObject jo = (JSONObject) obj;
+			*/
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} /*catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
 		
 		}
     }

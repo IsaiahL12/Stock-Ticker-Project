@@ -50,8 +50,8 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
          ChartPanel chartPanel = new ChartPanel(chart);
         
          JButton button = new JButton("Add New Data Item");
-        button.setActionCommand("ADD_DATA");
-        button.addActionListener(this);
+         button.setActionCommand("ADD_DATA");
+         button.addActionListener(this);
         
          JPanel content = new JPanel(new BorderLayout());
         content.add(chartPanel);
@@ -89,7 +89,7 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
         return result;
     }
     
-    
+   
     public void actionPerformed(final ActionEvent e) {
         if (e.getActionCommand().equals("ADD_DATA")) {
             final double factor = 0.90 + 0.2 * Math.random();
@@ -99,7 +99,8 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
             this.series.add(new Millisecond(), this.lastValue);
         }
     }
-
+	
+	
     /**
      * Starting point for the demonstration application.
      *

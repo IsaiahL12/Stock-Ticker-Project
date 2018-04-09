@@ -28,7 +28,7 @@ public class LandingPage extends JPanel {
 		
 		JPanel oldPassword = new JPanel();
 		
-		JPasswordField oldPasswordField = new JPasswordField();
+		final JPasswordField oldPasswordField = new JPasswordField();
 		oldPasswordField.setColumns(16);
 		JLabel oldPasswordLabel = new JLabel("Enter Old Password");
 		
@@ -37,7 +37,7 @@ public class LandingPage extends JPanel {
 		
 		JPanel newPassword = new JPanel();
 		
-		JPasswordField newPasswordField = new JPasswordField();
+		final JPasswordField newPasswordField = new JPasswordField();
 		newPasswordField.setColumns(16);
 		JLabel newPasswordLabel = new JLabel("Enter New Password");
 		JButton newPasswordButton = new JButton("Confirm");
@@ -52,7 +52,7 @@ public class LandingPage extends JPanel {
 		final JPanel loginPassword = new JPanel();
 		
 		JLabel loginPasswordLabel = new JLabel("Enter Password");
-		JPasswordField loginPasswordField = new JPasswordField();
+		final JPasswordField loginPasswordField = new JPasswordField();
 		loginPasswordField.setColumns(16);
 		JButton loginPasswordButton = new JButton("Confirm");
 		
@@ -102,12 +102,25 @@ public class LandingPage extends JPanel {
 		
 		loginPasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-						
+				String convert = new String(loginPasswordField.getPassword());
+				if(convert == PasswordBank.checkPassword())
+				{
+				// Insert chnage to next page
+					alterPassword.setVisible(true);
+					loginPassword.setVisible(false);
+					changePassword.setVisible(false);
+					cancelchangePassword.setVisible(true);
+				}
 			}
 		});	
 		
 		newPasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				String changepasswordto = new String(newPasswordField.getPassword());
+				String confirmpassword = new String(oldPasswordField.getPassword());
+				if(confirmpassword == PasswordBank.checkPassword()){
+					PasswordBank.changePassword(changepasswordto);
+				}
 			}
 		});	
 	}

@@ -3,7 +3,7 @@ package Project;
 
 public class PasswordBank {
 
-	public String password = "Default";
+	public static String password = "Default";
 	public int hash = 34;
 
 	PasswordBank()
@@ -11,12 +11,12 @@ public class PasswordBank {
 		
 	}
 	
-	String checkPassword()
+	static String checkPassword()
 	{
 		return password;
 	}
 	
-	void changePassword(String change)
+	static void changePassword(String change)
 	{
 		password = change;
 	}

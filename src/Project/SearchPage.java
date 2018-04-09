@@ -271,17 +271,25 @@ public class SearchPage extends JPanel {
 			}
 		System.out.println(nameOfData);
 		try {
-			String stockData = new String();
-			stockData = getDataOfStock.jsonOfData(nameOfData);
+			 Vector<String>  stockData = new Vector<String>();
+			String parseData = new String();
+			parseData = getDataOfStock.jsonOfData(nameOfData);
+			String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"");
+			//System.out.println(stockData);
+			for (int i =0; i<holdParseData.length; i++) {
+			if(holdParseData[i]!="\n") {
+				stockData.add(holdParseData[i]);
+				}
+			}
 			System.out.println(stockData);
-			/*Object obj = new JSONParser().parse(new FileReader(stockData));
-			JSONObject jo = (JSONObject) obj;
+			//JSONObject json = new JSONObject(stockData);
+			//Object obj = new JSONParser().parse(stockData);
+			/*JSONObject jo = (JSONObject) obj;
 			*/
-			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} /*catch (ParseException e1) {
+		}/*catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}*/

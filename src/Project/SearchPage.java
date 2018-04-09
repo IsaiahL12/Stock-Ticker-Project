@@ -251,13 +251,29 @@ public class SearchPage extends JPanel {
 	public class Listener implements ActionListener
     {
 	public void actionPerformed(ActionEvent e) {
+		IEX dataOfStock = new IEX();
 		String text= e.getSource().toString();
 		String[] hold= text.split("text=");
 		hold=hold[1].split(",");
 		//System.out.println(hold[0]);
 		nameOfData= hold[0];
-		System.out.println(nameOfData);
 		
-	}
+		if (getData.choose == 1) {
+			try {
+				nameOfData = dataOfStock.usingNameToFindSymbol(nameOfData);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
+			}
+		System.out.println(nameOfData);
+		try {
+			System.out.println(dataOfStock.jsonOfData(nameOfData));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		}
     }
 	}

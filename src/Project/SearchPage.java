@@ -274,14 +274,18 @@ public class SearchPage extends JPanel {
 			 Vector<String>  stockData = new Vector<String>();
 			String parseData = new String();
 			parseData = getDataOfStock.jsonOfData(nameOfData);
-			String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"");
+			String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"|\\:");
 			//System.out.println(stockData);
 			for (int i =0; i<holdParseData.length; i++) {
-			if(holdParseData[i]!="\n") {
-				stockData.add(holdParseData[i]);
+				if(holdParseData[i].isEmpty()==false) {			
+				stockData.add(holdParseData[i]);	
 				}
+				
 			}
-			System.out.println(stockData);
+			System.out.println(stockData);	
+			//System.out.println(holdParseData[1].isEmpty());	
+			//System.out.println(holdParseData[2].isEmpty());	
+			//System.out.println(holdParseData[3].isEmpty());	
 			//JSONObject json = new JSONObject(stockData);
 			//Object obj = new JSONParser().parse(stockData);
 			/*JSONObject jo = (JSONObject) obj;

@@ -103,9 +103,11 @@ public class LandingPage extends JPanel {
 		loginPasswordButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				String convert = new String(loginPasswordField.getPassword());
+
 				if(convert == PasswordBank.checkPassword())
 				{
-				// Insert chnage to next page
+
+				// Insert change to next page
 					alterPassword.setVisible(true);
 					loginPassword.setVisible(false);
 					changePassword.setVisible(false);
@@ -120,6 +122,10 @@ public class LandingPage extends JPanel {
 				String confirmpassword = new String(oldPasswordField.getPassword());
 				if(confirmpassword == PasswordBank.checkPassword()){
 					PasswordBank.changePassword(changepasswordto);
+					alterPassword.setVisible(false);
+					loginPassword.setVisible(true);	
+					changePassword.setVisible(true);
+					cancelchangePassword.setVisible(false);
 				}
 			}
 		});	

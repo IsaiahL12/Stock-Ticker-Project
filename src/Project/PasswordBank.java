@@ -8,7 +8,7 @@ public class PasswordBank {
 
 	PasswordBank()
 	{
-		
+		changePassword("Default");
 	}
 	
 	static String checkPassword()

@@ -7,6 +7,7 @@ package Project;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -41,11 +42,11 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
      * @param title  the frame title.
      */
     @SuppressWarnings("deprecation")
-	public DynamicDataDemo( String title) {
-
+	public DynamicDataDemo( String title, Vector <String> data) {
+    	//173 170 175 173.23 170.25
         this.series = new TimeSeries("Random Data", Millisecond.class);
          TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
-         JFreeChart chart = createChart(dataset);
+         JFreeChart chart = createChart(dataset, title);
 
          ChartPanel chartPanel = new ChartPanel(chart);
         
@@ -53,7 +54,7 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
          button.setActionCommand("ADD_DATA");
          button.addActionListener(this);
         
-         JPanel content = new JPanel(new BorderLayout());
+        JPanel content = new JPanel(new BorderLayout());
         content.add(chartPanel);
         content.add(button, BorderLayout.SOUTH);
         chartPanel.setPreferredSize(new java.awt.Dimension(375, 320));
@@ -70,9 +71,9 @@ public class DynamicDataDemo extends JPanel implements ActionListener {
      * 
      * @return A sample chart.
      */
-    private JFreeChart createChart(final XYDataset dataset) {
+    private JFreeChart createChart(final XYDataset dataset, String title) {
         final JFreeChart result = ChartFactory.createTimeSeriesChart(
-            "Stock Ticker", 
+        		title , 
             "Time Interval", 
             "Price",
             dataset, 

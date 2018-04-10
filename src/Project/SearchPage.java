@@ -18,10 +18,12 @@ public class SearchPage extends JPanel {
 	public JPanel leftHalf = new JPanel();
 	public JPanel rightside = new JPanel();
 	public JPanel resultPanel = new JPanel();
+	public JPanel graph = new JPanel();
 	public IEX getData = new IEX();
 	public JButton symbolButton;
 	public JButton nameButton;
 	public String nameOfData;
+	public Vector <String> theStockDataForDay;
 	
 	public void searching() {
 		try {
@@ -138,12 +140,12 @@ public class SearchPage extends JPanel {
 	    // End of that makes the data Panel
 	    
 	    //Begin of code that makes the Graphs
-	    JPanel graph = new JPanel();
-	    DynamicDataDemo demo = new DynamicDataDemo("Dynamic Data Demo");
+	   // JPanel graph = new JPanel();
+	    DynamicDataDemo demo = new DynamicDataDemo("Stocker man", null);
         //demo.pack();
         demo.setVisible(true);
         graph.add(demo);
-        rightside.add(demo, BorderLayout.CENTER);
+        rightside.add(graph, BorderLayout.CENTER);
 	    //rightside.add(new JLabel ("Insert graph"), BorderLayout.CENTER);
 	    // End of that makes the data Panel
 	    
@@ -261,6 +263,7 @@ public class SearchPage extends JPanel {
 		//System.out.println(hold[0]);
 		nameOfData= hold[0];
 		
+		
 		if (getData.choose == 1) {
 			try {
 				nameOfData = getDataOfStock.usingNameToFindSymbol(nameOfData);
@@ -269,7 +272,7 @@ public class SearchPage extends JPanel {
 				e1.printStackTrace();
 				}
 			}
-		System.out.println(nameOfData);
+		//System.out.println(nameOfData);
 		try {
 			 Vector<String>  stockData = new Vector<String>();
 			String parseData = new String();
@@ -280,24 +283,24 @@ public class SearchPage extends JPanel {
 				if(holdParseData[i].isEmpty()==false) {			
 				stockData.add(holdParseData[i]);	
 				}
-				
-			}
-			System.out.println(stockData);	
-			//System.out.println(holdParseData[1].isEmpty());	
-			//System.out.println(holdParseData[2].isEmpty());	
-			//System.out.println(holdParseData[3].isEmpty());	
-			//JSONObject json = new JSONObject(stockData);
-			//Object obj = new JSONParser().parse(stockData);
-			/*JSONObject jo = (JSONObject) obj;
-			*/
+				}
+			theStockDataForDay = new Vector <String>();
+			theStockDataForDay = stockData;
+			//theStockDataForDay.add();
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}/*catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
+		}
+		// JPanel graph = new JPanel();
+		graph.removeAll();
+		DynamicDataDemo chart = new DynamicDataDemo(hold[0],  theStockDataForDay);
+		chart.setVisible(true);
+	    graph.add(chart);
+	    rightside.add(graph, BorderLayout.CENTER);
+	    rightside.invalidate();
+	    rightside.validate();
+	    rightside.repaint();
 		}
     }
 	}

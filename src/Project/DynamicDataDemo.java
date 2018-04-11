@@ -10,8 +10,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -77,6 +75,7 @@ public class DynamicDataDemo extends JPanel {
     	  double hold2 = 1000000;
     	  for(int i =0; i< data.size(); i++) {
     		  int spacing = i*20;
+    		  
     		  if(data.get(i).equals("high")) {
     			  if( Double.parseDouble(data.get(i+1))!= -1 && Double.parseDouble(data.get(i+1))!= 0) {
     				  if(hold1 < Double.parseDouble(data.get(i+1))) {

@@ -287,7 +287,7 @@ public class SearchPage extends JPanel {
 				}
 			theStockDataForDay = new Vector <String>();
 			theStockDataForDay = stockData;
-			System.out.println(theStockDataForDay);
+			//System.out.println(theStockDataForDay);
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

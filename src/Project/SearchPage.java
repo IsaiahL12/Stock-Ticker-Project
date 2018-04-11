@@ -23,6 +23,7 @@ public class SearchPage extends JPanel {
 	public JButton symbolButton;
 	public JButton nameButton;
 	public String nameOfData;
+	public JButton dayButton;
 	public Vector <String> theStockDataForDay;
 	
 	public void searching() {
@@ -125,7 +126,7 @@ public class SearchPage extends JPanel {
 	  
 	    //Begin of code that makes the data Panel
 	    JPanel datePanel = new JPanel();
-		JButton dayButton = new JButton("Day");
+		dayButton = new JButton("Day");
 		JButton weekButton = new JButton("Week");
 		JButton monthButton = new JButton("Month");
 		JButton yearButton = new JButton("Year");
@@ -141,7 +142,7 @@ public class SearchPage extends JPanel {
 	    
 	    //Begin of code that makes the Graphs
 	   // JPanel graph = new JPanel();
-	    DynamicDataDemo demo = new DynamicDataDemo("Stocker man", null);
+	    DynamicDataDemo demo = new DynamicDataDemo("Stock", new Vector<String>());
         //demo.pack();
         demo.setVisible(true);
         graph.add(demo);
@@ -286,7 +287,7 @@ public class SearchPage extends JPanel {
 				}
 			theStockDataForDay = new Vector <String>();
 			theStockDataForDay = stockData;
-			//theStockDataForDay.add();
+			System.out.println(theStockDataForDay);
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -295,6 +296,8 @@ public class SearchPage extends JPanel {
 		// JPanel graph = new JPanel();
 		graph.removeAll();
 		DynamicDataDemo chart = new DynamicDataDemo(hold[0],  theStockDataForDay);
+		dayButton.setEnabled(false);
+		
 		chart.setVisible(true);
 	    graph.add(chart);
 	    rightside.add(graph, BorderLayout.CENTER);

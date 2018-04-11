@@ -24,6 +24,9 @@ public class SearchPage extends JPanel {
 	public JButton nameButton;
 	public String nameOfData;
 	public JButton dayButton;
+	public JButton weekButton;
+	public JButton monthButton;
+	public JButton yearButton;
 	public Vector <String> theStockDataForDay;
 	
 	public void searching() {
@@ -127,9 +130,9 @@ public class SearchPage extends JPanel {
 	    //Begin of code that makes the data Panel
 	    JPanel datePanel = new JPanel();
 		dayButton = new JButton("Day");
-		JButton weekButton = new JButton("Week");
-		JButton monthButton = new JButton("Month");
-		JButton yearButton = new JButton("Year");
+		weekButton = new JButton("Week");
+		monthButton = new JButton("Month");
+		yearButton = new JButton("Year");
 	
 		
 	    datePanel.add(dayButton);
@@ -297,7 +300,9 @@ public class SearchPage extends JPanel {
 		graph.removeAll();
 		DynamicDataDemo chart = new DynamicDataDemo(hold[0],  theStockDataForDay);
 		dayButton.setEnabled(false);
-		
+		weekButton.setEnabled(true);
+		monthButton.setEnabled(true);
+		yearButton.setEnabled(true);
 		chart.setVisible(true);
 	    graph.add(chart);
 	    rightside.add(graph, BorderLayout.CENTER);

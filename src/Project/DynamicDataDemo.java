@@ -1,14 +1,14 @@
 package Project;
 
-import java.awt.BasicStroke;
+//import java.awt.BasicStroke;
 /*
  * need to add download the Reference library for the project 
  * Jfreechart download page: https://sourceforge.net/projects/jfreechart/files/
 */
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.JPanel;
 
@@ -18,12 +18,12 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.data.time.Millisecond;
-import org.jfree.data.time.Minute;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
+//import org.jfree.chart.renderer.xy.XYItemRenderer;
+//import org.jfree.data.time.Millisecond;
+//import org.jfree.data.time.Minute;
+//import org.jfree.data.time.Month;
+//import org.jfree.data.time.TimeSeries;
+//import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;

@@ -119,8 +119,80 @@ public class DynamicDataDemo extends JPanel {
         chartPanel.setPreferredSize(new java.awt.Dimension(375, 320));
         //setContentPane(content)
         this.add(content);
-  
+ 
+        
+    }
+	
+	public JPanel DynamicDataDemo2( String title, Vector <String> data) {
+    	/*//173 170 175 173.23 170.25
+        //this.series = new TimeSeries("Random Data", Millisecond.class);
+         //TimeSeriesCollection dataset = new TimeSeriesCollection(this.series);
+        final XYSeries series = new XYSeries("Random Data"); 
+        series.add(0, 173);
+        series.add(60, 160);
+        series.add(120, 175);
+        series.add(180, 173.23);
+    	series.add(240, 170.25);
+    	final XYSeriesCollection dataset = new XYSeriesCollection(series); 
+    	JFreeChart chart = createChart(dataset, title);
 
+         ChartPanel chartPanel = new ChartPanel(chart);
+        */
+    	
+    	  final XYSeries high = new XYSeries("High");
+    	  final XYSeries average = new XYSeries("Price");
+    	  final XYSeries low = new XYSeries("Low");
+    	  double hold1 = 0;
+    	  double hold2 = 1000000;
+    	  for(int i =0; i< data.size(); i++) {
+    		  int spacing = i*20;
+    		  
+    		  if(data.get(i).equals("high")) {
+    			  if( Double.parseDouble(data.get(i+1))!= -1 && Double.parseDouble(data.get(i+1))!= 0) {
+    				  if(hold1 < Double.parseDouble(data.get(i+1))) {
+    					  hold1 = Double.parseDouble(data.get(i+1));
+    				  }
+    				  high.add(spacing, hold1);
+    			  }
+    		  }
+    		  if(data.get(i).equals("low")) {
+    			  if( Double.parseDouble(data.get(i+1))!= -1 && Double.parseDouble(data.get(i+1))!= 0) {
+    				  if(hold2 > Double.parseDouble(data.get(i+1))) {
+    					  hold2 = round(Double.parseDouble(data.get(i+1)),2);
+    				  }
+    				  low.add(spacing, hold2);
+    			  }
+    			  
+    		  }
+    		 /* if(data.get(i).equals("average")) {
+    			  if( Double.parseDouble(data.get(i+1))!= -1 && Double.parseDouble(data.get(i+1))!= 0) {
+    				  average.add(spacing, Double.parseDouble(data.get(i+1)));
+    			  }
+    		  }*/
+    	  }
+    	  
+      	XYSeriesCollection dataset = new XYSeriesCollection(high); 
+      	dataset.addSeries(low);
+      	dataset.addSeries(average);
+      	JFreeChart chart = createChart(dataset, title);
+      	chart.getPlot().setBackgroundPaint( Color.BLACK );
+      	
+           ChartPanel chartPanel = new ChartPanel(chart);
+         /*
+         JButton button = new JButton("Add New Data Item");
+         button.setActionCommand("ADD_DATA");
+         button.addActionListener(this);
+         */
+        
+        JPanel content = new JPanel(new BorderLayout());
+        content.add(chartPanel);
+        //content.add(button, BorderLayout.SOUTH);
+        chartPanel.setPreferredSize(new java.awt.Dimension(375, 320));
+        //setContentPane(content)
+        //this.add(content);
+        return content;
+ 
+        
     }
 
     /**

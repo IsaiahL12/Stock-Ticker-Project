@@ -130,8 +130,8 @@ public class SearchPage extends JPanel {
 	    //Begin of code that makes the data Panel
 	    JPanel datePanel = new JPanel();
 		dayButton = new JButton("Day");
-		weekButton = new JButton("Week");
-		monthButton = new JButton("Month");
+		weekButton = new JButton("1M");
+		monthButton = new JButton("6M");
 		yearButton = new JButton("Year");
 	
 		
@@ -221,7 +221,57 @@ public class SearchPage extends JPanel {
 		
 		weekButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("hello");
+				IEX getDataOfStock = new IEX();
+				/*String text= e.getSource().toString();
+				String[] hold= text.split("text=");
+				hold=hold[1].split(",");
+				//System.out.println(hold[0]);
+				//nameOfData= hold[0];
+				String hold = nameOfData;
 				
+				if (getData.choose == 1) {
+					try {
+						nameOfData = getDataOfStock.usingNameToFindSymbol(nameOfData);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						}
+					}
+				//System.out.println(nameOfData);
+				try {
+					 Vector<String>  stockData = new Vector<String>();
+					String parseData = new String();
+					parseData = getDataOfStock.jsonOfData1w(nameOfData);
+					String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"|\\:");
+					//System.out.println(stockData);
+					for (int i =0; i<holdParseData.length; i++) {
+						if(holdParseData[i].isEmpty()==false) {			
+						stockData.add(holdParseData[i]);	
+						}
+						}
+					theStockDataForDay = new Vector <String>();
+					theStockDataForDay = stockData;
+					//System.out.println(theStockDataForDay);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 JPanel graph = new JPanel();
+				graph.removeAll();
+				DynamicDataDemo chart = new DynamicDataDemo(hold,  theStockDataForDay);
+				
+				dayButton.setEnabled(true);
+				weekButton.setEnabled(false);
+				monthButton.setEnabled(true);
+				yearButton.setEnabled(true);
+				chart.setVisible(true);
+			    graph.add(chart.DynamicDataDemo2(hold, theStockDataForDay));
+			    rightside.add(graph, BorderLayout.CENTER);
+			    rightside.invalidate();
+			    rightside.validate();
+			    rightside.repaint();*/
 				
 			}
 		});

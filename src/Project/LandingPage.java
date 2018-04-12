@@ -104,7 +104,7 @@ public class LandingPage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String convert = new String(loginPasswordField.getPassword());
 
-				if(convert == PasswordBank.checkPassword())
+				if(convert.equals(PasswordBank.checkPassword()))
 				{
 
 				// Insert change to next page
@@ -120,7 +120,7 @@ public class LandingPage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String changepasswordto = new String(newPasswordField.getPassword());
 				String confirmpassword = new String(oldPasswordField.getPassword());
-				if(confirmpassword == PasswordBank.checkPassword()){
+				if(confirmpassword.equals(PasswordBank.checkPassword())){
 					PasswordBank.changePassword(changepasswordto);
 					alterPassword.setVisible(false);
 					loginPassword.setVisible(true);	

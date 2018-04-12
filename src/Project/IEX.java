@@ -157,5 +157,12 @@ public class IEX {
 		//System.out.println(a.searchForByNames("Zi"));
 			}
 			*/
-	
+	 
+	 public String jsonOfData1w(String symbol) throws IOException {
+		String stockData1m = new String();
+		stockData1m =IEXWebisite + "stock/" +symbol+"/chart/1m";
+		stockData1m = readJsonFromUrl(stockData1m);
+		 //https://api.iextrading.com/1.0/stock/aapl/chart/1d
+		 return stockData1m;
+	 }
 }

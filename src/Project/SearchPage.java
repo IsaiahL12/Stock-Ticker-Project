@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.awt.event.*;
+
+import org.json.JSONException;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,13 +25,17 @@ public class SearchPage extends JPanel {
 	public JButton symbolButton;
 	public JButton nameButton;
 	public String nameOfData;
+	public String name;
 	public JButton dayButton;
 	public JButton weekButton;
 	public JButton monthButton;
 	public JButton yearButton;
+	public Vector <Double> high;
+	public Vector <Double> low;
+	public Vector <Double> avg;
 	public Vector <String> theStockDataForDay;
 	
-	public void searching() {
+	public void searching() throws ParseException, JSONException {
 		try {
 			resultPanel.removeAll();
 			//a.searchForByNames(searchBox.getText());
@@ -145,10 +151,10 @@ public class SearchPage extends JPanel {
 	    
 	    //Begin of code that makes the Graphs
 	   // JPanel graph = new JPanel();
-	    DynamicDataDemo demo = new DynamicDataDemo("Stock", new Vector<String>());
+	    DynamicDataDemo demo = new DynamicDataDemo();
         //demo.pack();
         demo.setVisible(true);
-        graph.add(demo);
+        graph.add(demo.graph2("Stock", new Vector<Double>()));
         rightside.add(graph, BorderLayout.CENTER);
 	    //rightside.add(new JLabel ("Insert graph"), BorderLayout.CENTER);
 	    // End of that makes the data Panel
@@ -186,7 +192,15 @@ public class SearchPage extends JPanel {
 		searchButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 			//IEX a = new IEX(); 
-			searching();
+			try {
+				searching();
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			}
 		});
 		
@@ -195,7 +209,15 @@ public class SearchPage extends JPanel {
 				getData.choose = 0;
 				symbolButton.setEnabled(false);
 				nameButton.setEnabled(true);
-				searching();
+				try {
+					searching();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				
 				
@@ -207,85 +229,160 @@ public class SearchPage extends JPanel {
 				getData.choose = 1;
 				symbolButton.setEnabled(true);
 				nameButton.setEnabled(false);
-				searching();
+				try {
+					searching();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		
 		dayButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				IEX getDataOfStock = new IEX();
+				//System.out.println(nameOfData);
+				try {
+					//high = getDataOfStock.jsonOfDataDayHigh(nameOfData);
+					
+					//low = getDataOfStock.jsonOfDataDayLow(nameOfData);
+					//System.out.println(low);
+					avg = getDataOfStock.jsonOfDataDayAvg(nameOfData);
+					} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				// JPanel graph = new JPanel();
+				graph.removeAll();
+				DynamicDataDemo chart = new DynamicDataDemo();
 				
+				dayButton.setEnabled(false);
+				weekButton.setEnabled(true);
+				monthButton.setEnabled(true);
+				yearButton.setEnabled(true);
+				//chart.DynamicDataDemo1(title, data).setVisible(true);
+			    graph.add(chart.graph2(name, avg));
+			    rightside.add(graph, BorderLayout.CENTER);
+			    rightside.invalidate();
+			    rightside.validate();
+			    rightside.repaint();
 				
 			}
 		});	
 		
 		weekButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("hello");
 				IEX getDataOfStock = new IEX();
-				/*String text= e.getSource().toString();
-				String[] hold= text.split("text=");
-				hold=hold[1].split(",");
-				//System.out.println(hold[0]);
-				//nameOfData= hold[0];
-				String hold = nameOfData;
-				
-				if (getData.choose == 1) {
-					try {
-						nameOfData = getDataOfStock.usingNameToFindSymbol(nameOfData);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						}
-					}
 				//System.out.println(nameOfData);
 				try {
-					 Vector<String>  stockData = new Vector<String>();
-					String parseData = new String();
-					parseData = getDataOfStock.jsonOfData1w(nameOfData);
-					String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"|\\:");
-					//System.out.println(stockData);
-					for (int i =0; i<holdParseData.length; i++) {
-						if(holdParseData[i].isEmpty()==false) {			
-						stockData.add(holdParseData[i]);	
-						}
-						}
-					theStockDataForDay = new Vector <String>();
-					theStockDataForDay = stockData;
-					//System.out.println(theStockDataForDay);
+					//high = getDataOfStock.jsonOfDataDayHigh(nameOfData);
 					
-				} catch (IOException e1) {
+					//low = getDataOfStock.jsonOfDataDayLow(nameOfData);
+					//System.out.println(low);
+					avg = getDataOfStock.jsonOfDataDayM1(nameOfData);
+					//System.out.println(avg);
+					} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				 JPanel graph = new JPanel();
+				// JPanel graph = new JPanel();
 				graph.removeAll();
-				DynamicDataDemo chart = new DynamicDataDemo(hold,  theStockDataForDay);
+				DynamicDataDemo chart = new DynamicDataDemo();
 				
 				dayButton.setEnabled(true);
 				weekButton.setEnabled(false);
 				monthButton.setEnabled(true);
 				yearButton.setEnabled(true);
-				chart.setVisible(true);
-			    graph.add(chart.DynamicDataDemo2(hold, theStockDataForDay));
+				//chart.DynamicDataDemo1(title, data).setVisible(true);
+			    graph.add(chart.graph2(name,avg));
 			    rightside.add(graph, BorderLayout.CENTER);
 			    rightside.invalidate();
 			    rightside.validate();
-			    rightside.repaint();*/
+			    rightside.repaint();
+				
+			
 				
 			}
 		});
 		
 		monthButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				IEX getDataOfStock = new IEX();
+				//System.out.println(nameOfData);
+				try {
+					//high = getDataOfStock.jsonOfDataDayHigh(nameOfData);
+					
+					//low = getDataOfStock.jsonOfDataDayLow(nameOfData);
+					//System.out.println(low);
+					avg = getDataOfStock.jsonOfDataDayM3(nameOfData);
+					//System.out.println(avg);
+					} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				// JPanel graph = new JPanel();
+				graph.removeAll();
+				DynamicDataDemo chart = new DynamicDataDemo();
 				
+				dayButton.setEnabled(true);
+				weekButton.setEnabled(true);
+				monthButton.setEnabled(false);
+				yearButton.setEnabled(true);
+				//chart.DynamicDataDemo1(title, data).setVisible(true);
+			    graph.add(chart.graph2(name,avg));
+			    rightside.add(graph, BorderLayout.CENTER);
+			    rightside.invalidate();
+			    rightside.validate();
+			    rightside.repaint();	
 				
 			}
 		});	
 		
 		yearButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				IEX getDataOfStock = new IEX();
+				//System.out.println(nameOfData);
+				try {
+					//high = getDataOfStock.jsonOfDataDayHigh(nameOfData);
+					
+					//low = getDataOfStock.jsonOfDataDayLow(nameOfData);
+					//System.out.println(low);
+					avg = getDataOfStock.jsonOfDataDayY1(nameOfData);
+					//System.out.println(avg);
+					} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				// JPanel graph = new JPanel();
+				graph.removeAll();
+				DynamicDataDemo chart = new DynamicDataDemo();
 				
+				dayButton.setEnabled(true);
+				weekButton.setEnabled(true);
+				monthButton.setEnabled(true);
+				yearButton.setEnabled(false);
+				//chart.DynamicDataDemo1(title, data).setVisible(true);
+			    graph.add(chart.graph2(name,avg));
+			    rightside.add(graph, BorderLayout.CENTER);
+			    rightside.invalidate();
+			    rightside.validate();
+			    rightside.repaint();	
 				
 			}
 		});	
@@ -316,49 +413,53 @@ public class SearchPage extends JPanel {
 		hold=hold[1].split(",");
 		//System.out.println(hold[0]);
 		nameOfData= hold[0];
+		name= hold[0];
+		 high= new Vector <Double>();
+		 low= new Vector <Double>();
+		 avg= new Vector <Double>();
 		
 		
 		if (getData.choose == 1) {
 			try {
-				nameOfData = getDataOfStock.usingNameToFindSymbol(nameOfData);
+				nameOfData = getDataOfStock.usingNameToFindSymbolWithJSON(nameOfData);
+				//System.out.println(nameOfData);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				}catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		//System.out.println(nameOfData);
 		try {
-			 Vector<String>  stockData = new Vector<String>();
-			String parseData = new String();
-			parseData = getDataOfStock.jsonOfData(nameOfData);
-			String[] holdParseData = parseData.split("}|\\{|\\[|\\]|\\,|\\\"|\\:");
-			//System.out.println(stockData);
-			for (int i =0; i<holdParseData.length; i++) {
-				if(holdParseData[i].isEmpty()==false) {			
-				stockData.add(holdParseData[i]);	
-				}
-				}
-			theStockDataForDay = new Vector <String>();
-			theStockDataForDay = stockData;
-			//System.out.println(theStockDataForDay);
+			//high = getDataOfStock.jsonOfDataDayHigh(nameOfData);
 			
-		} catch (IOException e1) {
+			//low = getDataOfStock.jsonOfDataDayLow(nameOfData);
+			//System.out.println(low);
+			avg = getDataOfStock.jsonOfDataDayAvg(nameOfData);
+			} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		// JPanel graph = new JPanel();
 		graph.removeAll();
-		DynamicDataDemo chart = new DynamicDataDemo(hold[0],  theStockDataForDay);
+		DynamicDataDemo chart = new DynamicDataDemo();
+		
 		dayButton.setEnabled(false);
 		weekButton.setEnabled(true);
 		monthButton.setEnabled(true);
 		yearButton.setEnabled(true);
-		chart.setVisible(true);
-	    graph.add(chart);
+		//chart.DynamicDataDemo1(title, data).setVisible(true);
+	    graph.add(chart.graph2(hold[0], avg));
 	    rightside.add(graph, BorderLayout.CENTER);
 	    rightside.invalidate();
 	    rightside.validate();
 	    rightside.repaint();
+	    
 		}
     }
 	}

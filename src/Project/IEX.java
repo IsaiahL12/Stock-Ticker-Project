@@ -176,6 +176,28 @@ public class IEX {
 		      is.close();
 		    }
 		  }
+	
+	public  Vector<String> jsonOfDataDayTime(String symbol) throws IOException, JSONException {
+	 	String url = new String();
+	 	url =IEXWebisite + "stock/" +symbol+"/chart/1d";
+	 	InputStream is = new URL(url).openStream();
+	    try {
+	    	Vector <String> time = new Vector <String>();
+	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+	      String jsonText = readAll(rd);
+	      JSONArray json = new JSONArray(jsonText);
+	      
+	      for(int i= 0; i< json.length(); i++) {
+	    	  time.add(json.getJSONObject(i).getString("minute"));
+	    	  System.out.println(json.getJSONObject(i).getString("minute"));
+	    		     
+	      }
+	     
+	      return time;
+	    } finally {
+	      is.close();
+	    }
+	  }
 	 
 	public  Vector<Double> jsonOfDataDayM1(String symbol) throws IOException, JSONException {
 		 	String url = new String();
@@ -242,6 +264,13 @@ public class IEX {
 		      is.close();
 		    }
 		  }
-	
-	
+	/*
+	public static void main (String[] args) throws IOException, JSONException {
+		IEX a = new IEX();
+		a.jsonOfDataDayTime("aapl");
+		
+		
+		
+	}
+	*/
 }

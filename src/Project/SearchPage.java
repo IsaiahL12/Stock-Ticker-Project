@@ -72,7 +72,7 @@ public class SearchPage extends JPanel {
 		
 	}
 	
-	public SearchPage(){
+	public SearchPage() throws java.text.ParseException{
 		
 		//split the screen into Project.SearchPage.SearchPage().splitInHalves
 		JPanel splitInHalves = new JPanel();              
@@ -168,12 +168,30 @@ public class SearchPage extends JPanel {
 	    splitInHalves.add(rightside);
 	    // End of that makes the Right side/ half
 
-		//this add the halves together
+		
+	    //Make title
+	    JPanel title = new JPanel();
+	    title.setLayout(new GridLayout(1,3));
+	    JPanel backSection = new JPanel();
+	    backSection.setLayout(new FlowLayout());
+	    //JPanel logoutSection = new JPanel();
+	    JPanel pName = new JPanel();
+	    pName.setLayout(new FlowLayout());
+	   // logoutSection.setLayout(new FlowLayout());
+	    JButton BackButton = new JButton("Back to Portfolio Page");
+	    //JButton Logout = new JButton("Logout");
+	    backSection.add(BackButton);
+	   // logoutSection.add(Logout);
+	    pName.add(pageName);
+	    title.add(backSection);
+	    title.add(pName);
+	    title.add(new JPanel());
+	 // End of the title
+
+	    
+	   //this add every thing  together 
 	    JPanel completeTheJPanel = new JPanel();
 	    completeTheJPanel.setLayout(new BorderLayout());
-	    JPanel title = new JPanel();
-	    title.setLayout(new FlowLayout());
-	    title.add(pageName);
 	    completeTheJPanel.add(title, BorderLayout.NORTH);
 	    completeTheJPanel.add(splitInHalves , BorderLayout.CENTER);
 		this.add(completeTheJPanel, BorderLayout.CENTER);

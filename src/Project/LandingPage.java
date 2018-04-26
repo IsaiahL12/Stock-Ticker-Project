@@ -108,10 +108,10 @@ public class LandingPage extends JPanel {
 				{
 
 				// Insert change to next page
-					alterPassword.setVisible(true);
+					alterPassword.setVisible(false);
 					loginPassword.setVisible(false);
 					changePassword.setVisible(false);
-					cancelchangePassword.setVisible(true);
+					cancelchangePassword.setVisible(false);
 				}
 			}
 		});	

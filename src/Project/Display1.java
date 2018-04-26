@@ -21,7 +21,7 @@ public class Display1 extends JFrame {
 	public static final int MAX_BORDER_X = 800;
 	
 	public static final int MAX_BORDER_Y = 550;
-	
+	//dsa
 	public static void main (String[] args) throws ParseException {
 		frame = new Display1();
 		

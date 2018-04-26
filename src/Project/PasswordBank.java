@@ -1,8 +1,6 @@
 package Project;
-import  java.security.SecureRandom.*;
 
-
-
+//yo
 public class PasswordBank {
 
 	public static String password = "Default";

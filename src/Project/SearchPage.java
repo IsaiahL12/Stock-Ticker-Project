@@ -160,10 +160,10 @@ public class SearchPage extends JPanel {
 	    
 	    //Begin of code that makes the Graphs of buy sell buttons
 	    JPanel dealPanel = new JPanel();
-	    JButton sellButton = new JButton("Sell");
+	    JButton addButton = new JButton("Add");
 	    JButton buyButton = new JButton("Buy");
 	    
-	    dealPanel.add(sellButton);
+	    dealPanel.add(addButton);
 	    dealPanel.add(buyButton);
 	    
 	    rightside.add(dealPanel, BorderLayout.SOUTH);
@@ -406,7 +406,7 @@ public class SearchPage extends JPanel {
 			}
 		});	
 		
-		sellButton.addActionListener(new ActionListener(){	
+		addButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
 				
@@ -415,7 +415,19 @@ public class SearchPage extends JPanel {
 		
 		buyButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
+				String Data = "Data";
+				String Data1 = "Data.xlsx";
+				String Data2 = "Data2.xlsx";
+				String filepath = "Store_Data.xlsx";
 				
+				try {
+					FileWriter fw = new FileWriter (filepath, true);
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter pw = new PrintWriter(bw );
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});	
@@ -423,7 +435,6 @@ public class SearchPage extends JPanel {
 		BackButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
 				
-				new PortfolioPage();
 				
 			}
 		});	

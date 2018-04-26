@@ -62,8 +62,8 @@ public class DynamicDataDemo extends JPanel {
      * @param title  the frame title.
      */
    
-	public JPanel graph2( String title, Vector <Double> avgV, String type ) {
-		/*
+	public JPanel graph2( String title, Vector <Double> avgV,  Vector <String> time ) {
+		
     	  final TimeSeries high = new TimeSeries("High");
     	  final TimeSeries average = new TimeSeries("Price");
     	  final TimeSeries low = new TimeSeries("Low");
@@ -82,21 +82,32 @@ public class DynamicDataDemo extends JPanel {
     				   hold2 =  avgV.get(i);
     				   //System.out.println(hold2);
     			   }
-    			   
+    			   /*
     			   Calendar cal = Calendar.getInstance();
-    				cal.set(Calendar.HOUR_OF_DAY,17);
+    			  
+    				cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.get(i).split(":")[0]));
     				cal.set(Calendar.MINUTE,30);
     				//cal.set(Calendar.SECOND,0);
     				//cal.set(Calendar.MILLISECOND,0);
     				
     				Date day = cal.getTime();
-    			   
+    			   */
     		// Date day = new SimpleDateFormat("HH:MM").parse("9:30");
-    		 
-    			 hold =  avgV.get(i);
-    			// average.add(new Day(day), round(hold,2));
+    		 try {
+				Date date = new SimpleDateFormat("yyyy-MM-dd").parse(time.get(i));
+				
+				hold =  avgV.get(i);
+				average.addOrUpdate(new Day(date), round(hold,2));
+    			//average.add( null, round(hold,2));
+				high.addOrUpdate(new Day(date), round(hold1,2));
+	    		low.addOrUpdate(new Day(date), round(hold2,2));
     			 //high.add(spacing*i, round(hold1,2));
     		//  low.add(spacing*i, round(hold2,2));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
     		  }
     		  
     	  }
@@ -106,13 +117,9 @@ public class DynamicDataDemo extends JPanel {
       	dataset.addSeries(low);
       	dataset.addSeries(average);
       	JFreeChart chart;
-      	if(type.toLowerCase().equals("d")) {
-      	System.out.println("YO");
-      	chart = createChart(dataset, title);
-      	}
-      	else {
-      	chart = createChart(dataset, title);
-      	}
+      	
+      	chart = createChart2(dataset, title);
+      	
       	chart.getPlot().setBackgroundPaint( Color.BLACK );
         ChartPanel chartPanel = new ChartPanel(chart);
        // chartPanel.overlayChanged(event);
@@ -124,8 +131,8 @@ public class DynamicDataDemo extends JPanel {
         //setContentPane(content)
         //this.add(content);
         return content;
- */
-        
+ 
+  /*
         final XYSeries high = new XYSeries("High");
   	  final XYSeries average = new XYSeries("Price");
   	  final XYSeries low = new XYSeries("Low");
@@ -162,13 +169,8 @@ public class DynamicDataDemo extends JPanel {
     	dataset.addSeries(low);
     	dataset.addSeries(average);
     	JFreeChart chart;
-    	if(type.toLowerCase().equals("d")) {
-    	System.out.println("YO");
-    	chart = createChart(dataset, title);
-    	}
-    	else {
-    	chart = createChart(dataset, title);
-    	}
+    
+    	chart = createChart2(dataset, title);
     	chart.getPlot().setBackgroundPaint( Color.BLACK );
       ChartPanel chartPanel = new ChartPanel(chart);
      // chartPanel.overlayChanged(event);
@@ -180,10 +182,66 @@ public class DynamicDataDemo extends JPanel {
       //setContentPane(content)
       //this.add(content);
       return content;
-        
+      */ 
     }
 	
-/*	
+	
+	public JPanel graph1( String title, Vector <Double> avgV) {
+		
+    
+      final XYSeries high = new XYSeries("High");
+  	  final XYSeries average = new XYSeries("Price");
+  	  final XYSeries low = new XYSeries("Low");
+  	  double hold = 0;
+  	  double hold1 = -1;
+  	  double hold2 = 100000000;
+  	  int spacing = 20;
+  	  
+  	 for (int i =0; i< avgV.size(); i++) {
+  		   if (avgV.get(i) != -1 && avgV.get(i) != 0) {
+  			   if (hold1 < avgV.get(i)) {
+  				   hold1 =  avgV.get(i);
+  			   }
+  		 
+  			   if (hold2 > avgV.get(i)) {
+  				   hold2 =  avgV.get(i);
+  				   //System.out.println(hold2);
+  			   }
+  			   
+  			  
+  			   
+  		// Date day = new SimpleDateFormat("HH:MM").parse("9:30");
+  		 
+  			 hold =  avgV.get(i);
+  			average.add(spacing*i, round(hold,2));
+  			 high.add(spacing*i, round(hold1,2));
+  		 low.add(spacing*i, round(hold2,2));
+  		  }
+  		  
+  	  }
+  	  
+  	  
+  	XYSeriesCollection dataset = new XYSeriesCollection(high); 
+    	dataset.addSeries(low);
+    	dataset.addSeries(average);
+    	JFreeChart chart;
+    	chart = createChart1(dataset, title);
+    	chart.getPlot().setBackgroundPaint( Color.BLACK );
+      ChartPanel chartPanel = new ChartPanel(chart);
+     // chartPanel.overlayChanged(event);
+      
+      JPanel content = new JPanel(new BorderLayout());
+      content.add(chartPanel);
+      //content.add(button, BorderLayout.SOUTH);
+      chartPanel.setPreferredSize(new java.awt.Dimension(375, 320));
+      //setContentPane(content)
+      //this.add(content);
+      return content;
+       
+    }
+	
+	
+	/*
 	public static void main (String[] args) throws ParseException {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY,17);
@@ -200,7 +258,8 @@ public class DynamicDataDemo extends JPanel {
 	}
 	*/
 	
-    private JFreeChart createChart(final XYDataset dataset, String title) {
+
+    private JFreeChart createChart1(final XYDataset dataset, String title) {
         final JFreeChart result = ChartFactory.createTimeSeriesChart(
         		title , 
             "Time Interval", 
@@ -210,18 +269,32 @@ public class DynamicDataDemo extends JPanel {
             true, 
             false
         );
-        /*final XYPlot plot = result.getXYPlot();
-        DateAxis axis = (DateAxis) plot.getDomainAxis(); 
-        axis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
+        final XYPlot plot = result.getXYPlot();
+        ValueAxis axis = plot.getDomainAxis(); 
+        //axis.setDateFormatOverride(null);
         //ValueAxis axis = plot.getDomainAxis();
-        //axis.setAutoRange(true);
+        axis.setAutoRange(true);
         //axis.setFixedAutoRange(60000.0);  // 60 seconds
         //axis = (DateAxis) plot.getRangeAxis();
-       // axis.setRange(0.0, 500.0); 
-       // NumberAxis xAxis = new NumberAxis();
+       //// axis.setRange(0.0, 500.0); 
+        NumberAxis xAxis = new NumberAxis();
         
-        plot.setDomainAxis(axis);*/
-        
+       plot.setDomainAxis(axis);
+          //result.getXYPlot().setDomainAxis(null);     
+        //plot.setDomainAxis(null);
+        return result;
+    }
+    private JFreeChart createChart2(final XYDataset dataset, String title) {
+        final JFreeChart result = ChartFactory.createTimeSeriesChart(
+        		title , 
+            "Time Interval", 
+            "Price",
+            dataset, 
+            true, 
+            true, 
+            false
+        );
+        ///final XYPlot plot = result.getXYPlot();   
         return result;
     }
     /*

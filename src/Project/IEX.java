@@ -112,6 +112,10 @@ public class IEX {
 			return savedResult;
 	 }
 	 
+	
+	
+	
+	
 	public Vector<String> searchForBySymbolWithJSON(String jtextfeild) throws IOException, ParseException, JSONException {
 		 	savedResult = new Vector<String>();
 			Vector<String> getData1 = getDataBySymbolWithAJSON(refData);
@@ -177,9 +181,18 @@ public class IEX {
 		    }
 		  }
 	
-	public  Vector<String> jsonOfDataDayTime(String symbol) throws IOException, JSONException {
+	public  Vector<String> jsonOfDataDayTime(String symbol, String type ) throws IOException, JSONException {
 	 	String url = new String();
-	 	url =IEXWebisite + "stock/" +symbol+"/chart/1d";
+	 	if(type.contentEquals("1m")){
+	 		url =IEXWebisite + "stock/" +symbol+"/chart/1m";	
+	 	}
+	 	else if(type.contentEquals("3m")) {
+	 		url =IEXWebisite + "stock/" +symbol+"/chart/6m";
+	 	}
+	 	else {
+	 		url =IEXWebisite + "stock/" +symbol+"/chart/1y";	
+	 	}
+	 
 	 	InputStream is = new URL(url).openStream();
 	    try {
 	    	Vector <String> time = new Vector <String>();
@@ -188,8 +201,8 @@ public class IEX {
 	      JSONArray json = new JSONArray(jsonText);
 	      
 	      for(int i= 0; i< json.length(); i++) {
-	    	  time.add(json.getJSONObject(i).getString("minute"));
-	    	  System.out.println(json.getJSONObject(i).getString("minute"));
+	    	  time.add(json.getJSONObject(i).getString("date"));
+	    	  //System.out.println(json.getJSONObject(i).getString("minute"));
 	    		     
 	      }
 	     
@@ -221,9 +234,9 @@ public class IEX {
 		    }
 		  }
 	 
-	public  Vector<Double> jsonOfDataDayM3(String symbol) throws IOException, JSONException {
+	public  Vector<Double> jsonOfDataDayM6(String symbol) throws IOException, JSONException {
 		 	String url = new String();
-		 	url =IEXWebisite + "stock/" +symbol+"/chart/3m";
+		 	url =IEXWebisite + "stock/" +symbol+"/chart/6m";
 		 	InputStream is = new URL(url).openStream();
 		    try {
 		    	Vector <Double> month3 = new Vector <Double>();

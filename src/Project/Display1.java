@@ -24,9 +24,10 @@ public class Display1 extends JFrame {
 	
 	public static void main (String[] args) throws ParseException {
 		frame = new Display1();
-		//frame.add(new SearchPage());
+		
+		frame.add(new SearchPage());
 		//frame.add(new LandingPage());
-		frame.add(new PortfolioPage());
+		//frame.add(new PortfolioPage());
 		frame.setMinimumSize(new Dimension(MINI_BORDER_X, MINI_BORDER_Y));
 		frame.setMaximumSize(new Dimension(MAX_BORDER_X, MAX_BORDER_Y));
 		//frame.pack(); // scale thing down so that every thing fits on the frame

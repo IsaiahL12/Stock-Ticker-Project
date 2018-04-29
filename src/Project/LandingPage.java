@@ -13,8 +13,12 @@ public class LandingPage extends JPanel {
 	
 	private JLabel pageName = new JLabel("Landing Page");
 	public PasswordBank password = new PasswordBank();
+	public CardLayout cardLayout;
+	public JPanel cardDeck;
 	
-	public LandingPage(){
+	public LandingPage(CardLayout clin, JPanel cardPanelin){
+		cardLayout = clin;
+		cardDeck = cardPanelin;
 		
 		JPanel firstlayer = new JPanel();
 		firstlayer.setLayout(new GridLayout (5,1,0, 30));
@@ -108,10 +112,16 @@ public class LandingPage extends JPanel {
 				{
 
 				// Insert change to next page
-					alterPassword.setVisible(true);
+					alterPassword.setVisible(false);
 					loginPassword.setVisible(false);
 					changePassword.setVisible(false);
-					cancelchangePassword.setVisible(true);
+					cancelchangePassword.setVisible(false);
+					
+					cardLayout.show(cardDeck, "portfolio");
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "That password is incorrect. Please try again.", "Incorrect Password",JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});	

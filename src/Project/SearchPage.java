@@ -73,7 +73,7 @@ public class SearchPage extends JPanel {
 		
 	}
 	
-	public SearchPage() throws java.text.ParseException{
+	public SearchPage(){
 		
 		//split the screen into Project.SearchPage.SearchPage().splitInHalves
 		JPanel splitInHalves = new JPanel();              
@@ -418,7 +418,7 @@ public class SearchPage extends JPanel {
 				String Data = "Data";
 				String Data1 = "Data.xlsx";
 				String Data2 = "Data2.xlsx";
-				String filepath = "Store_Data.xlsx";
+				String filepath = "Store_Data.txt";
 				
 				try {
 					FileWriter fw = new FileWriter (filepath, true);

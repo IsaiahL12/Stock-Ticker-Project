@@ -113,8 +113,8 @@ public class LandingPage extends JPanel {
 
 				// Insert change to next page
 					alterPassword.setVisible(false);
-					loginPassword.setVisible(false);
-					changePassword.setVisible(false);
+					loginPassword.setVisible(true);
+					changePassword.setVisible(true);
 					cancelchangePassword.setVisible(false);
 					
 					cardLayout.show(cardDeck, "portfolio");

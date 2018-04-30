@@ -35,8 +35,11 @@ public class SearchPage extends JPanel {
 	public Vector <Double> avg;
 	public Vector <String> theStockDataForDay;
 	public Vector <String> time;
+	public CardLayout cardLayout;
+	public JPanel cardDeck;
 	
 	public void searching() throws ParseException, JSONException {
+		
 		try {
 			resultPanel.removeAll();
 			Vector<String> results = new Vector<String>(); 
@@ -73,7 +76,10 @@ public class SearchPage extends JPanel {
 		
 	}
 	
-	public SearchPage(){
+	public SearchPage(CardLayout clin, JPanel cardPanelin){
+		
+		cardLayout = clin;
+		cardDeck = cardPanelin;
 		
 		//split the screen into Project.SearchPage.SearchPage().splitInHalves
 		JPanel splitInHalves = new JPanel();              
@@ -434,7 +440,7 @@ public class SearchPage extends JPanel {
 		
 		BackButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
+				cardLayout.show(cardDeck, "portfolio");
 				
 			}
 		});	

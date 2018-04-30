@@ -43,7 +43,7 @@ public class Display1 extends JFrame {
 */
 
 
- package Project;
+package Project;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -70,8 +70,8 @@ public class Display1 extends JFrame {
 	public static CardLayout cardLayout = new CardLayout(); 
 	public static JPanel cardDeck = new JPanel();
 	public static JPanel card1 = new LandingPage(cardLayout, cardDeck);
-	public static JPanel card2 = new SearchPage();
-	public static JPanel card3 = new PortfolioPage();
+	public static JPanel card2 = new SearchPage(cardLayout, cardDeck);
+	public static JPanel card3 = new PortfolioPage(cardLayout, cardDeck);
 	
 	public static final int MINI_BORDER_X= 300;
 	public static final int MINI_BORDER_Y= 300;
@@ -85,7 +85,7 @@ public class Display1 extends JFrame {
 		searchpage = new JButton ("Search");
 		portfoliopage = new JButton ("Portfolio"); 
 		*/
-		actionListener al = new actionListener(); 
+		//actionListener al = new actionListener(); 
 		/*
 		jbSearch.addActionListener(al); 
 		jbPortfolio.addActionListener((al));  

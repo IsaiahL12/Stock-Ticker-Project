@@ -31,7 +31,7 @@ public class PortfolioPage extends JPanel {
 	 private double userMoney;
 	 public CardLayout cardLayout;
 	 public JPanel cardDeck;
-	 
+	 public Records records;
 	 
 	 
 	 
@@ -157,46 +157,7 @@ public class PortfolioPage extends JPanel {
   payOff.setLayout(new GridLayout(3,1));// three parts at here, property, gain and loss today, total property change
   rightPart.add(payOff);
 
-  public Vector <Double> avg;
-	public Vector <String> theStockDataForDay;
-	public Vector <String> time;
-	
-	public void searching() throws ParseException, JSONException {
-		try {
-			resultPanel.removeAll();
-			Vector<String> results = new Vector<String>(); 
-		//	results= getData.chooseOne();
-			JPanel options = new JPanel();
-			options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
-			
-			
-			for (int i = 0; i < results.size(); i++) {	
-				JButton stockButton= new JButton(results.get(i)) {
-					{
-						
-						Dimension d = new Dimension(367, 75);
-			            setMinimumSize(d);
-			            setMaximumSize(d);
-			            setPreferredSize(d);
-					}
-				};
-				stockButton.addActionListener(new Listener());
-				options.add(stockButton);
-			}
-			
-			JScrollPane scrollPane = new JScrollPane(options);
-			scrollPane.setPreferredSize(new Dimension(385, 385));
-			resultPanel.add(scrollPane);
-			resultPanel.invalidate();
-			resultPanel.validate();
-			resultPanel.repaint();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-	}
+
   
   
   

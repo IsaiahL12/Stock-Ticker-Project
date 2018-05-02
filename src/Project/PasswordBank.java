@@ -10,7 +10,7 @@ public class PasswordBank {
 
 	PasswordBank()
 	{
-		changePassword("Default");
+		changePassword("D");
 	}
 	
 	static String checkPassword()

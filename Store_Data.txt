@@ -1,10 +1,6 @@
-[Bought]
-Begin
-
-
-End
-[Interested]
-Begin
-
-
-End
+INTERESTED
+BEGIN
+END
+BUY
+BEGIN
+END

@@ -89,6 +89,12 @@ public class Records {
 			// attempting to sell stock one doesn't own. 
 		}
 	}
+	
+	
+	String getStockName(int i)
+	{
+		return names[i];
+	}
 }
 
 

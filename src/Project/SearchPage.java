@@ -166,7 +166,7 @@ public class SearchPage extends JPanel {
 	    
 	    //Begin of code that makes the Graphs of buy sell buttons
 	    JPanel dealPanel = new JPanel();
-	    JButton addButton = new JButton("Add");
+	    JButton addButton = new JButton("<html> <center>Add to <br/> Insterested Stock</center></html>");
 	    JButton buyButton = new JButton("Buy");
 	    
 	    dealPanel.add(addButton);
@@ -414,22 +414,52 @@ public class SearchPage extends JPanel {
 		
 		addButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});	
-		
-		buyButton.addActionListener(new ActionListener(){	
-			public void actionPerformed(ActionEvent e) {
+				Vector <String> storeDataWrite = new  Vector <String> ();
+				Vector <String> storeDataFinal = new  Vector <String> ();
+				boolean noDuplicateCheck = true;
 				String Data = "Data";
-				String Data1 = "Data.xlsx";
-				String Data2 = "Data2.xlsx";
 				String filepath = "Store_Data.txt";
+				int saveIndex= 0 ;
+				
 				
 				try {
-					FileWriter fw = new FileWriter (filepath, true);
+					BufferedReader in = new BufferedReader(new FileReader(filepath));
+					String str;
+					while ((str = in.readLine()) != null) {
+					    	storeDataWrite.add(str);
+					    }
+					in.close();
+					for(int i =0; i<storeDataWrite.size(); i++) {
+						 if(storeDataWrite.get(i)== "INTERESTED") {
+							 i++;
+							 saveIndex=i;
+							 while(storeDataWrite.get(i)!= "END") {
+								 if(storeDataWrite.get(i)== nameOfData) {
+									JOptionPane.showMessageDialog(null, "You already have "+nameOfData+ " stock in your interested folder" , "Duplicate",JOptionPane.WARNING_MESSAGE);
+									noDuplicateCheck =false;
+								 }
+								 i++;	 	 
+							 }
+						 }
+					}
+					if (noDuplicateCheck) {
+						storeDataWrite.insertElementAt(nameOfData, saveIndex+2);
+					}
+					for(int i =0; i<storeDataWrite.size(); i++) {
+						if(storeDataWrite.get(i)!= null) {
+							storeDataFinal.add(storeDataWrite.get(i));
+						}
+					}
+					FileWriter fw = new FileWriter (filepath, false);
 					BufferedWriter bw = new BufferedWriter(fw);
-					PrintWriter pw = new PrintWriter(bw );
+					PrintWriter pw = new PrintWriter(bw);
+					//System.out.println("A");
+					for(int i =0; i<storeDataFinal.size(); i++) {
+						pw.println(storeDataFinal.get(i));	
+					}
+					pw.flush();
+					pw.close();
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -438,10 +468,18 @@ public class SearchPage extends JPanel {
 			}
 		});	
 		
+		buyButton.addActionListener(new ActionListener(){	
+			public void actionPerformed(ActionEvent e) {
+		
+				
+
+				
+			}
+		});	
+		
 		BackButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(cardDeck, "portfolio");
-				
+				cardLayout.show(cardDeck, "portfolio");		
 			}
 		});	
 

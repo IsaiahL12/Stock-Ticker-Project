@@ -27,6 +27,7 @@ import Project.SearchPage.Listener;
 
 @SuppressWarnings("serial")
 public class PortfolioPage extends JPanel {
+<<<<<<< HEAD
 	
 	 
 	 private JLabel titleLabel = new JLabel("Portfolio Page");
@@ -116,6 +117,83 @@ public class PortfolioPage extends JPanel {
 	splitInHalves.add(leftPart);
 	splitInHalves.add(rightPart);
 	JPanel title = new JPanel();
+=======
+ 
+private JLabel titleLabel = new JLabel("Portfolio Page");
+private JLabel PageName = new JLabel("payOff");
+private double userMoney;
+public CardLayout cardLayout;
+public JPanel cardDeck;
+public Records records;
+ 
+private JPanel leftPart = new JPanel();
+private JPanel rightPart = new JPanel();
+//private JLabel pageName = new JLabel("Portfolio Page");
+private double totalProperty = 250000;
+private double totalGain = -1000;
+private double totalPercentage;
+private double dailyPercentage;
+ 
+ 
+ 
+public PortfolioPage(CardLayout clin, JPanel cardPanelin){
+cardLayout = clin;
+cardDeck = cardPanelin;
+this.setLayout(new BorderLayout());
+this.setLayout(new GridLayout(1,2));
+leftPart.setLayout(new BorderLayout());
+  
+JPanel splitInHalves = new JPanel();              
+splitInHalves.setLayout(new GridLayout(1, 2));
+
+  
+  rightPart.setLayout(new GridLayout(2,1));
+  rightPart.setLayout(new BorderLayout());
+  
+  
+  
+//create the Portfolio Box
+  JPanel PortfolioBox = new JPanel();
+  JScrollPane scrollPane = new JScrollPane();
+  scrollPane.setPreferredSize(new Dimension(385, 385));
+  PortfolioBox.add(scrollPane);
+  leftPart.add(PortfolioBox, BorderLayout.CENTER);
+  
+  
+  JPanel TITLE = new JPanel();
+  TITLE.add(PageName);
+  rightPart.add(TITLE, BorderLayout.NORTH);
+  
+  rightPart.setLayout(new GridLayout(2,1));
+  //rightPart.setLayout(new BorderLayout());
+  
+  totalPercentage = (totalProperty + totalGain) / totalProperty; 
+  
+  JPanel payOff = new JPanel();
+  payOff.setLayout(new GridLayout(3,1));// three parts at here, property, gain and loss today, total property change
+  
+  
+  JPanel propertyGraph = new JPanel();
+  
+  
+  
+  JLabel totalValue = new JLabel("total property:  " + totalProperty + "$");
+  JLabel totalpercentage = new JLabel("totalPercentage:  " + totalPercentage+"%" );
+  JLabel dailygain = new JLabel("total Gain:  " + totalGain );
+  
+  
+  payOff.add(totalValue);
+  payOff.add(dailygain);
+  payOff.add(totalpercentage);
+  
+  
+  rightPart.add(payOff);
+  rightPart.add(propertyGraph);
+  
+splitInHalves.add(leftPart);
+splitInHalves.add(rightPart);
+JPanel title = new JPanel();
+>>>>>>> 1510ae7912ecb4169ce103a82cc5bbf6c0c6dfbb
     title.setLayout(new GridLayout(1,3));
     JPanel goToSearch = new JPanel();
     goToSearch.setLayout(new FlowLayout());
@@ -139,6 +217,7 @@ public class PortfolioPage extends JPanel {
     completeTheJPanel.setLayout(new BorderLayout());
     completeTheJPanel.add(title, BorderLayout.NORTH);
     completeTheJPanel.add(splitInHalves , BorderLayout.CENTER);
+<<<<<<< HEAD
 	this.add(completeTheJPanel, BorderLayout.CENTER);
 	
 	
@@ -154,4 +233,19 @@ public class PortfolioPage extends JPanel {
 		cardLayout.show(cardDeck, "landing");
 		}
 	});
+=======
+this.add(completeTheJPanel, BorderLayout.CENTER);
+goToSearchPageButton.addActionListener(new ActionListener(){ 
+public void actionPerformed(ActionEvent e) {
+cardLayout.show(cardDeck, "search");
+}
+});
+
+goTheLogInButton.addActionListener(new ActionListener(){ 
+public void actionPerformed(ActionEvent e) {
+cardLayout.show(cardDeck, "landing");
+}
+});
+>>>>>>> 1510ae7912ecb4169ce103a82cc5bbf6c0c6dfbb
+}
 }

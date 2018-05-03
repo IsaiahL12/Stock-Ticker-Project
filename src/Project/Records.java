@@ -36,18 +36,18 @@ public class Records {
 		}
 	}
 	
-	void buyStock(String purchaseName, int purchaseNumber, double purchasePrice){
+	void buyStock(String purchaseName, int purchaseNumber, double closingPrice){
 		
 		if(stocknames.get(purchaseName) != null){
 			records[(Integer) stocknames.get(purchaseName)][0] = records[(Integer) stocknames.get(purchaseName)][0] + purchaseNumber;
-			records[(Integer) stocknames.get(purchaseName)][1] = records[(Integer) stocknames.get(purchaseName)][1] + purchasePrice;
+			records[(Integer) stocknames.get(purchaseName)][1] = closingPrice;
 			}
 		else
 		{
 			if(getStockNumber()<150)
 			{
 				records[getStockNumber()][0] = purchaseNumber;
-				records[getStockNumber()][1] = purchasePrice;
+				records[getStockNumber()][1] = closingPrice;
 				names[getStockNumber()] = purchaseName;
 				stocknames.put(purchaseName, getStockNumber());
 				changeStockNumber(1);
@@ -55,7 +55,7 @@ public class Records {
 		}
 	}	
 	
-	void sellStock(String sellName, int sellNumber, double sellPrice){
+	void sellStock(String sellName, int sellNumber, double closingPrice){
 			
 		if (stocknames.get(sellName) != null){
 			if(records[(Integer) stocknames.get(sellName)][0] >= sellNumber)
@@ -74,7 +74,7 @@ public class Records {
 				
 				else{
 						records[(Integer) stocknames.get(sellName)][0] = records[(Integer) stocknames.get(sellName)][0] - sellNumber;
-						records[(Integer) stocknames.get(sellName)][1] = records[(Integer) stocknames.get(sellName)][1] + sellPrice;
+						records[(Integer) stocknames.get(sellName)][1] = closingPrice;
 					}
 			}
 			
@@ -94,6 +94,33 @@ public class Records {
 	String getStockName(int i)
 	{
 		return names[i];
+	}
+	
+	void updateClosingPrice()
+	{
+		for (int i = 0; i < stocknumber; i++)
+		{
+			
+			records[i][1] = /*search function(names[i])*/ 0;
+		}
+	}
+	
+	double getNumberofStocks(int counter)
+	{
+		return records[counter][0];
+	}
+	
+	double getClosingPrice(int counter)
+	{
+		return records[counter][1];
+	}
+	
+	double getCurrentPriceofStocks(int counter)
+	{
+		String search = names[counter];
+		// Sret up to pull counter to name - pass name to search function, get current price, pass up. 
+		double hold = 0;
+		return hold;
 	}
 }
 

@@ -175,12 +175,11 @@ e.printStackTrace();
   
   
   JPanel propertyGraph = new JPanel();
-  JPanel HoldingPanel = new JPanel();
   portfolioGraph = new DynamicDataDemo(); 
   //propertyGraph.add(new JPanel()); 
-  HoldingPanel.add(portfolioGraph.graph1("Portfolio Overview", vec));   
-  HoldingPanel.setLayout(new GridLayout(1,1)); 
-  propertyGraph.add(HoldingPanel);
+  propertyGraph.add(portfolioGraph.graph1("Portfolio Overview", vec));   
+  propertyGraph.setLayout(new GridLayout(1,1)); 
+  
   
  
   totalProperty += totalGain; 

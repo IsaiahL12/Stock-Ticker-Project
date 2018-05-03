@@ -430,11 +430,13 @@ public class SearchPage extends JPanel {
 					    }
 					in.close();
 					for(int i =0; i<storeDataWrite.size(); i++) {
-						 if(storeDataWrite.get(i)== "INTERESTED") {
+						 if(storeDataWrite.get(i).equalsIgnoreCase("INTERESTED")) {
 							 i++;
+							 //System.out.println("B");
 							 saveIndex=i;
-							 while(storeDataWrite.get(i)!= "END") {
+							 while(!(storeDataWrite.get(i).equalsIgnoreCase("END")) ) {
 								 if(storeDataWrite.get(i).equals( nameOfData)) {
+									// System.out.println("A");
 									JOptionPane.showMessageDialog(null, "You already have "+nameOfData+ " stock in your interested folder" , "Duplicate",JOptionPane.WARNING_MESSAGE);
 									noDuplicateCheck =false;
 								 }
@@ -443,7 +445,7 @@ public class SearchPage extends JPanel {
 						 }
 					}
 					if (noDuplicateCheck) {
-						storeDataWrite.insertElementAt(nameOfData, saveIndex+2);
+						storeDataWrite.insertElementAt(nameOfData, saveIndex+1);
 					}
 					for(int i =0; i<storeDataWrite.size(); i++) {
 						if(storeDataWrite.get(i)!= null) {

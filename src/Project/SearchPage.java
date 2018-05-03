@@ -434,7 +434,7 @@ public class SearchPage extends JPanel {
 							 i++;
 							 saveIndex=i;
 							 while(storeDataWrite.get(i)!= "END") {
-								 if(storeDataWrite.get(i)== nameOfData) {
+								 if(storeDataWrite.get(i).equals( nameOfData)) {
 									JOptionPane.showMessageDialog(null, "You already have "+nameOfData+ " stock in your interested folder" , "Duplicate",JOptionPane.WARNING_MESSAGE);
 									noDuplicateCheck =false;
 								 }
@@ -470,10 +470,60 @@ public class SearchPage extends JPanel {
 		
 		buyButton.addActionListener(new ActionListener(){	
 			public void actionPerformed(ActionEvent e) {
-		
+				/*
+				Vector <String> storeDataWrite = new  Vector <String> ();
+				Vector <String> storeDataFinal = new  Vector <String> ();
+				boolean noDuplicateCheck = true;
+				String Data = "Data";
+				String filepath = "Store_Data.txt";
+				int saveIndex= 0 ;
 				
-
 				
+				try {
+					BufferedReader in = new BufferedReader(new FileReader(filepath));
+					String str;
+					while ((str = in.readLine()) != null) {
+					    	storeDataWrite.add(str);
+					    }
+					in.close();
+					for(int i =0; i<storeDataWrite.size(); i++) {
+						 if(storeDataWrite.get(i)== "BUY") {
+							 i++;
+							 saveIndex=i;
+							 while(storeDataWrite.get(i)!= "END") {
+								 if(storeDataWrite.get(i)== nameOfData) {
+									JOptionPane.showMessageDialog(null, "You already have "+nameOfData+ " stock in your interested folder" , "Duplicate",JOptionPane.WARNING_MESSAGE);
+									noDuplicateCheck =false;
+								 }
+								 i++;	 	 
+							 }
+						 }
+					}
+					if (noDuplicateCheck) {
+						storeDataWrite.insertElementAt(nameOfData, saveIndex+2);
+					}
+					for(int i =0; i<storeDataWrite.size(); i++) {
+						if(storeDataWrite.get(i)!= null) {
+							storeDataFinal.add(storeDataWrite.get(i));
+						}
+					}
+					FileWriter fw = new FileWriter (filepath, false);
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter pw = new PrintWriter(bw);
+					//System.out.println("A");
+					for(int i =0; i<storeDataFinal.size(); i++) {
+						pw.println(storeDataFinal.get(i)+","+",");	
+					}
+					pw.flush();
+					pw.close();
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				*/
 			}
 		});	
 		

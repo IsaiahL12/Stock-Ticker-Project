@@ -142,8 +142,8 @@ e.printStackTrace();
   JButton restartButton= new JButton("Restart");
   JPanel bottomLeftPart= new JPanel();
   bottomLeftPart.setLayout(new FlowLayout());
-  bottomLeftPart.add(InterestedButton);
-  bottomLeftPart.add(BuyButton);
+  bottomLeftPart.add(sellButton);
+  bottomLeftPart.add(restartButton);
   leftPart.add(bottomLeftPart, BorderLayout.SOUTH);
   
 //create the Portfolio Box

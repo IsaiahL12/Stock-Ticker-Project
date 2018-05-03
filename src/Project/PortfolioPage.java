@@ -2,13 +2,18 @@ package Project;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Vector;
+import java.util.jar.JarException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -43,13 +48,13 @@ private JPanel rightPart = new JPanel();
 //private JPanel PortfolioBox = new JPanel();
 //private JLabel pageName = new JLabel("Portfolio Page");
 private double totalProperty = 250000;
-private double totalGain = -1000;
+private double totalGain = -998.25;
 private double totalPercentage;
 private double dailyPercentage;
 
 
-private StringBuffer stringBuffer = new StringBuffer();
- 
+private DynamicDataDemo portfolioGraph; 
+
 public PortfolioPage(CardLayout clin, JPanel cardPanelin){
 cardLayout = clin;
 cardDeck = cardPanelin;
@@ -133,6 +138,14 @@ e.printStackTrace();
   topLeftPart.add(BuyButton);
   leftPart.add(topLeftPart, BorderLayout.NORTH);
   
+  JButton sellButton= new JButton("Sell");
+  JButton restartButton= new JButton("Restart");
+  JPanel bottomLeftPart= new JPanel();
+  bottomLeftPart.setLayout(new FlowLayout());
+  bottomLeftPart.add(InterestedButton);
+  bottomLeftPart.add(BuyButton);
+  leftPart.add(bottomLeftPart, BorderLayout.SOUTH);
+  
 //create the Portfolio Box
    PortfolioBox = new JPanel();
   
@@ -141,27 +154,56 @@ e.printStackTrace();
   leftPart.add(PortfolioBox, BorderLayout.CENTER);
   
   
-  JPanel TITLE = new JPanel();
-  TITLE.add(PageName);
-  rightPart.add(TITLE, BorderLayout.NORTH);
+ 
   
   rightPart.setLayout(new GridLayout(2,1));
   //rightPart.setLayout(new BorderLayout());
   
   totalPercentage = (totalProperty + totalGain) / totalProperty; 
-  
+  Vector<Double> vec = new Vector<Double>();
+  vec.add(250000.45);
+  vec.add(250523.23);
+  vec.add(250347.9);
+  vec.add(250790.89);
+  vec.add(250113.67); 
+  vec.add(249789.34);
+  vec.add(249467.12);
+  vec.add(249231.47);
+  vec.add(249001.75); 
   JPanel payOff = new JPanel();
   payOff.setLayout(new GridLayout(3,1));// three parts at here, property, gain and loss today, total property change
   
   
   JPanel propertyGraph = new JPanel();
+  JPanel HoldingPanel = new JPanel();
+  portfolioGraph = new DynamicDataDemo(); 
+  //propertyGraph.add(new JPanel()); 
+  HoldingPanel.add(portfolioGraph.graph1("Portfolio Overview", vec));   
+  HoldingPanel.setLayout(new GridLayout(1,1)); 
+  propertyGraph.add(HoldingPanel);
   
+ 
+  totalProperty += totalGain; 
+ 
+ 
+  JPanel emptySpace = new JPanel(); 
   
   
   JLabel totalValue = new JLabel("total property:  " + totalProperty + "$");
-  JLabel totalpercentage = new JLabel("totalPercentage:  " + totalPercentage+"%" );
+  JLabel totalpercentage = new JLabel( totalPercentage+"%" );
   JLabel dailygain = new JLabel("total Gain:  " + totalGain );
+ totalValue.setFont(new Font("Serif", Font.BOLD, 20));
   
+  totalpercentage.setFont(new Font("Serif", Font.BOLD, 20));
+  dailygain.setFont(new Font("Serif", Font.BOLD, 20));
+  
+  if(totalGain < 0) {
+      totalpercentage.setForeground(Color.red);  
+  }
+  else if(totalGain > 0) {
+      
+      totalpercentage.setForeground(Color.green);
+  }
   
   payOff.add(totalValue);
   payOff.add(dailygain);
